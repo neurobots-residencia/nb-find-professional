@@ -26,9 +26,9 @@ L.Marker.prototype.options.icon = DefaultIcon;
 //   router: L.Routing.mapbox(`${mapBoxApiKey}`)
 // }).addTo(App);
 
-export default function App() {
+export default function Map() {
   const [data, setData] = useState([]);
-  
+
   useEffect(() => {
     axios.get("https://api-clinics.rj.r.appspot.com/all")
       .then((response) => {
@@ -38,10 +38,10 @@ export default function App() {
         console.error("Erro na solicitação: ", error);
       });
   }, []);
-
+  
   return (
     <MapContainer
-      style={{ height: "100vh" }}
+      style={{ height: "400px", width: "800px" }}
       center={[-8.059280072694094, -34.879632311984246]}
       zoom={12.5}
       scrollWheelZoom={true}
