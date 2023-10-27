@@ -8,7 +8,8 @@ export default {
     extend: {
       backgroundImage: {
         'neuroback': "url('../public/assets/neurobots_background.jpeg')",
-        'google-maps': "url('../public/assets/google_image.png')"
+        'google-maps': "url('../public/assets/google_image.png')",
+        'telaInicial': "url('../public/assets/fundoTelaInicial.jpg')"
       },
 
       screens: {
