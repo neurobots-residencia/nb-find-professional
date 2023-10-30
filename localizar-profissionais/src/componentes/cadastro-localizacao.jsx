@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useForm, useController } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 export default function CadastroLocalizacao(){ 
     const navigate = useNavigate();
@@ -24,16 +24,21 @@ export default function CadastroLocalizacao(){
             
                 <form onSubmit = {handleSubmit} className=" w-96 p-7 bg-slate-100 h-96 flex flex-col gap-4 ">
                     <label className="text-2xl">Localização </label>
-                    <input className="border-black border h-10" type="text" {...register("cep")} onBlur= {checkCEP}/>
-                    <div className=" flex gap-6">
-                        <input className="border-black border w-36 h-10"type = "text" {...register("estado")}/>
-                        <input  className="border-black border  w-36 h-10" type = "text" {...register("cidade")}/>
+                    <div className="flex flex-col gap-6 ">
+                    <input placeholder="CEP*"  className="border-black border h-10" type="text" {...register("cep")} onBlur= {checkCEP}/>
+                        <input placeholder="Cidade" className="border-black border h-10" type = "text" {...register("cidade")}/>
+                        <input placeholder="Rua" className="border-black border h-10" type = "text" {...register("rua")}/>
                     </div>
-                    <div className=" flex gap-6">
-                        <input className="border-black border w-36 h-10" type = "number" {...register("distancia")}/>
-                        <input  className="border-black border  w-36 h-10" type = "text" {...register("rua")}/>
+                    <div className=" flex gap-4">
+                    <select className="border-black border w-38 h-10" {...register("distanciaDesejada")}>
+                        <option disabled selected>Distância máxima desejada</option>
+                        <option value="1km">1Km</option>
+                        <option value="4km">5Km</option>
+                        <option value="10km">10Km</option>
+                    </select>
+                        <input placeholder="Estado" className="border-black border w-24 h-10"type = "text" {...register("estado")}/>
                     </div>
-                    <button onClick={trocarTela}  className="border-black border   h-10">
+                    <button onClick={trocarTela}  className="border-black border h-10">
                         Concluir
                     </button>
                 </form> 
