@@ -43,8 +43,8 @@ export default function TelaMapa(props) {
       </div>
 
       <main className="flex-1 p-6 flex gap-6">  
-        <div className="flex flex-col flex-1 gap-4 items-center">
-          <div className="grid gap-4 flex">
+        <div className="flex flex-col flex-1 gap-4 items-center h-[60vh] overflow-hidden">
+          <div className="grid gap-4 flex overflow-y-scroll right-[-30px] relative">
           {data.map((data, index) =>{
             return <Card 
             key={index} 
@@ -59,7 +59,6 @@ export default function TelaMapa(props) {
             <ArrowDownCircle size={30} />
           </button>
         </div>
-
         <div className="items-center relative w-1/4">
           <Map />
         </div>
