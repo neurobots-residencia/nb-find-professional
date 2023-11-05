@@ -9,8 +9,10 @@ export default function ValidacaoFormPaciente() {
   const trocarTela = () => navigate('/cadastroLocalizacao');
 
   const onSubmit = (data) => {
+    // Aqui você pode processar os dados do paciente
     console.log(data);
 
+    // Navegue para a próxima página após o envio do formulário
     trocarTela();
   };
 
@@ -44,4 +46,33 @@ export default function ValidacaoFormPaciente() {
           {errors.whatsapp && (
             <p className="text-red-500">{errors.whatsapp.message}</p>
           )}
-          
+          <input placeholder="email" {...register("email")} className="border-black border h-10" type="text" />
+          <label className="text-2xl">Informações do AVC</label>
+          <div className="flex gap-6">
+            <select
+              {...register("historicoAVC", { required: "Selecione uma opção" })}
+              className={`border-black border w-36 h-10 ${
+                errors.historicoAVC ? "border-red-500" : ""
+              }`}
+            >
+              <option value="" disabled>Tem AVC na família?</option>
+              <option value="Sim">Sim</option>
+              <option value="Não">Não</option>
+            </select>
+            <select
+              {...register("valorInvestimento", { required: "Selecione uma opção" })}
+              className={`border-black border w-36 h-10 ${
+                errors.valorInvestimento ? "border-red-500" : ""
+              }`}
+            >
+              <option value="">Qual valor de investimento?</option>
+              <option value="Não tenho valor para investir">Não tenho valor para investir</option>
+              <option value="R$ 500 a R$1000">R$ 500 a R$1000</option>
+              <option value="R$ 1000 a R$1500">R$ 1000 a R$1500</option>
+              <option value="R$ 1600 a R$2500">R$ 1600 a R$2500</option>
+              <option value="Acima de R$2500">Acima de R$2500</option>
+            </select>
+          </div>
+          {errors.historicoAVC && (
+            <p className="text-red-500">{errors.historicoAVC.message}</p>
+          )}
