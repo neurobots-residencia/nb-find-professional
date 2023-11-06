@@ -48,6 +48,7 @@ export default function TelaMapa(props) {
           {data.map((data, index) =>{
             return <Card 
             key={index} 
+            id={index}
             clinica={data.clinica} 
             contato={data.contato} 
             email={data.email}

@@ -30,7 +30,7 @@ export default function Map() {
   
   return (
     <MapContainer
-      style={{ position: "relative" , width: "auto", height: "100%"}}
+      style={{ position: "relative" , width: "auto", height: "100%  "}}
       center={[-8.059280072694094, -34.879632311984246]}
       zoom={12.5}
       scrollWheelZoom={true}
@@ -43,6 +43,11 @@ export default function Map() {
         <Marker
           key={index}
           position={[parseFloat(clinic.long), parseFloat(clinic.lat)]}
+          eventHandlers={{
+            click: (event) => {
+              console.log(event.target.Popup)
+            }
+          }}
         >
           <Popup>{clinic.clinica}</Popup>
         </Marker>
