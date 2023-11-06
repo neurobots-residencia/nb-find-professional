@@ -26,7 +26,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 //   router: L.Routing.mapbox(`${mapBoxApiKey}`)
 // }).addTo(App);
 
-export default function App() {
+export default function Mapa() {
   const [data, setData] = useState([]);
   
   useEffect(() => {
