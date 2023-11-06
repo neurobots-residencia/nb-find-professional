@@ -9,10 +9,7 @@ export default function ValidacaoFormPaciente() {
   const trocarTela = () => navigate('/cadastroLocalizacao');
 
   const onSubmit = (data) => {
-    // Aqui você pode processar os dados do paciente
     console.log(data);
-
-    // Navegue para a próxima página após o envio do formulário
     trocarTela();
   };
 
@@ -76,3 +73,20 @@ export default function ValidacaoFormPaciente() {
           {errors.historicoAVC && (
             <p className="text-red-500">{errors.historicoAVC.message}</p>
           )}
+          {errors.valorInvestimento && (
+            <p className="text-red-500">{errors.valorInvestimento.message}</p>
+          )}
+          <input
+            placeholder="Possui outra condição que não seja AVC? Qual?"
+            {...register("outraCondicao")}
+            className="border-black border h-10"
+            type="text"
+          />
+          <button className="border-black border h-10" type="submit">
+            Concluir
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
