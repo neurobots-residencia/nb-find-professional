@@ -9,7 +9,7 @@ function TelaInicial() {
           <h1 className="text-6xl" > Tecnologia e saúde ao alcance de todos</h1>
           <p className="text-2xl">A Neurobots existe para tornar a vida das pessoas
           melhor através da tecnologia. Tornamos acessíveis soluções eficientes e inovadoras em saúde.</p>
-          <button  onClick={trocarTela} className= "bg-emerald-500 px-16 py-5 rounded-full w-1/2 items-center text-white text-lg hover:bg-emerald-400" >
+          <button onClick={trocarTela} className= "bg-emerald-500 px-16 py-5 rounded-full w-1/2 items-center text-white text-lg hover:bg-emerald-400" >
             Procurar profissionais
           </button>
         </div>
