@@ -18,8 +18,6 @@ export default function CadastroLocalizacao() {
 
   const checkCEP = (e) => {
     const cep = e.target.value.replace(/\D/g, '');
-
-
     if (cep.length === 8) {
       fetch(`https://viacep.com.br/ws/${cep}/json/`)
         .then((response) => response.json())
@@ -76,3 +74,21 @@ export default function CadastroLocalizacao() {
               <option value="10km">10Km</option>
             </select>
             {errors.distanciaDesejada && <p className="text-red-500">{errors.distanciaDesejada.message}</p>}
+
+            <input
+              placeholder="Estado"
+              className={`border-black border w-24 h-10 ${errors.estado ? "border-red-500" : ""}`}
+              type="text"
+              {...register("estado")}
+            />
+            {errors.estado && <p className="text-red-500">{errors.estado.message}</p>}
+          </div>
+
+          <button type="submit" className="border-black border h-10">
+            Concluir
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
