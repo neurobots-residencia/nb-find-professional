@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useStore } from "../scripts/controlador-estados";
 
 // const mapBoxApiKey = 'pk.eyJ1IjoiYXJ0dXJwYXoiLCJhIjoiY2xvOHhrYWdlMDQ2YzJqbnY0dHF6czljbSJ9.P8Gfn_n1_abgrFm4ygkcSg'
 
@@ -16,6 +17,9 @@ import "leaflet/dist/leaflet.css";
 // }).addTo(MapContainer);
 
 export default function Map() {
+
+  const { idMarcador, setMarkerId } = useStore();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -45,7 +49,8 @@ export default function Map() {
           position={[parseFloat(clinic.long), parseFloat(clinic.lat)]}
           eventHandlers={{
             click: (event) => {
-              console.log(event.target.Popup)
+              console.log(index)
+              setMarkerId(index)
             }
           }}
         >

@@ -1,14 +1,13 @@
 import { Redo2 } from "lucide-react";
 import React from "react";
-
-const chamaMarcador = (event) => {
-  console.log(event.currentTarget.id)
-}
+import { useStore } from "../scripts/controlador-estados";
 
 const Card = (props) => {
 
-  return (
-    <div className=" bg-slate-200 p-2 border flex flex-row justify-evenly rounded-lg border-black" id={props.id} onClick={chamaMarcador}>
+  const { idMarcador, selectMarker } = useStore();
+
+  return ( // Estilo quando em foco pelo click do marcador está após ? e o estilo quando perder o foco após :
+    <div className=" bg-slate-200 p-2 border flex flex-row justify-evenly rounded-lg border-black" id={props.id} onClick={ selectMarker } style={{backgroundColor: props.id == idMarcador ? "rgb(220 38 38)" : "rgb(229 231 235)"}}>
       <div className="flex flex-col min-w-min max-w-xs">
         <h1 className="font-bold text-lg">{props.clinica}</h1>
         <span className="font-semibold">
