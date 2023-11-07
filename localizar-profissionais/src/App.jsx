@@ -1,8 +1,9 @@
+
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import TelaInicial from "./componentes/TelaInicial";
-import CadastroPaciente from "./componentes/CadastroPaciente";
-import CadastroLocalizacao from "./componentes/CadastroLocalizacao";
-import LocalizacaoProfissionais from "./componentes/TelaPrincipal/LocalizacaoProfissionais"
+import TelaInicial from "./componentes/tela-inicial";
+import CadastroPaciente from './componentes/cadastro-paciente';
+import CadastroLocalizacao from './componentes/cadastro-localizacao';
+import TelaMapa from './componentes/localizacao-profissionais'
 function App() {
   return (
     <div>
@@ -10,8 +11,8 @@ function App() {
           <Routes>
             <Route exact path='/' element={<TelaInicial />} />
             <Route exact path='/cadastroPaciente' element={<CadastroPaciente/>} />
-            <Route exact path='/cadastro' element={<CadastroLocalizacao />} />
-            <Route exact path='/profissionais' element={<LocalizacaoProfissionais />} />
+            <Route exact path='/cadastroLocalizacao' element={<CadastroLocalizacao />} />
+            <Route exact path='/localizacaoProfissionais' element={<TelaMapa />} />
           </Routes>
         </Router>
     </div>
