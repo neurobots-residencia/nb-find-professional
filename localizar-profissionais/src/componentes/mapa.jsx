@@ -2,31 +2,24 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useStore } from "../scripts/controlador-estados";
 
-// const mapBoxApiKey = process.env.MAP_BOX_API_KEY
+// const mapBoxApiKey = 'pk.eyJ1IjoiYXJ0dXJwYXoiLCJhIjoiY2xvOHhrYWdlMDQ2YzJqbnY0dHF6czljbSJ9.P8Gfn_n1_abgrFm4ygkcSg'
 
-import * as L from 'leaflet/dist/leaflet'
 // import 'leaflet-routing-machine'
 
-import icon from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
-
-let DefaultIcon = L.icon({
-    iconUrl: icon,  
-    shadowUrl: iconShadow
-});
-
-L.Marker.prototype.options.icon = DefaultIcon;
-
-// L.Routing.control({
+// L.Routing.Mapbox({
 //   waypoints: [
 //     L.latLng(57.74, 11.94),
-//     L.latLng(57.6792, 11.949)
+//     L.latLng(57.6792, 11.949)   
 //   ],
 //   router: L.Routing.mapbox(`${mapBoxApiKey}`)
-// }).addTo(App);
+// }).addTo(MapContainer);
 
 export default function Map() {
+
+  const { idMarcador, setMarkerId } = useStore();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -41,7 +34,7 @@ export default function Map() {
   
   return (
     <MapContainer
-      style={{ height: "400px", width: "800px" }}
+      style={{ position: "relative" , width: "auto", height: "100%  "}}
       center={[-8.059280072694094, -34.879632311984246]}
       zoom={12.5}
       scrollWheelZoom={true}
@@ -54,6 +47,12 @@ export default function Map() {
         <Marker
           key={index}
           position={[parseFloat(clinic.long), parseFloat(clinic.lat)]}
+          eventHandlers={{
+            click: (event) => {
+              console.log(index)
+              setMarkerId(index)
+            }
+          }}
         >
           <Popup>{clinic.clinica}</Popup>
         </Marker>
