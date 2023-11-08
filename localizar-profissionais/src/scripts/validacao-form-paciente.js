@@ -76,3 +76,8 @@ export default function ValidacaoFormPaciente() {
           {errors.historicoAVC && (
             <p className="text-red-500">{errors.historicoAVC.message}</p>
           )}
+        /</form>
+      /</div>
+    /</div>
+  )
+}
