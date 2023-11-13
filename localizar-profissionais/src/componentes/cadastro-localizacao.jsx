@@ -20,27 +20,31 @@ export default function CadastroLocalizacao(){
 
     return (
         <div className=" bg-telaInicial min-h-screen bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full ">
-            <div className=" flex justify-center items-center h-screen ">
+            <div className=" flex justify-center items-center h-screen font-poppins">
             
-                <form onSubmit = {handleSubmit} className=" w-96 p-7 bg-slate-100 h-96 flex flex-col gap-4 ">
-                    <label className="text-2xl">Localização </label>
-                    <div className="flex flex-col gap-6 ">
-                    <input placeholder="CEP*"  className="border-black border h-10" type="text" {...register("cep")} onBlur= {checkCEP}/>
-                        <input placeholder="Cidade" className="border-black border h-10" type = "text" {...register("cidade")}/>
-                        <input placeholder="Rua" className="border-black border h-10" type = "text" {...register("rua")}/>
+                <form onSubmit = {handleSubmit} className=" w-fundoCard h-fundoCard p-12 bg-white flex flex-col gap-8 rounded-md ">
+                    <label className="text-2xl font-bold mt-6">Localização </label>
+                    <div className="flex flex-col gap-6">
+                        <input id = "cep" placeholder="CEP*"  className="outline-azulEscuro placeholder-gray-500 border p-6  h-14 rounded border-gray-400" type="text" {...register("cep")} onBlur= {checkCEP}/>
+                        <input placeholder="Cidade" className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400" type = "text" {...register("cidade")}/>
+                        <input placeholder="Rua" className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400" type = "text" {...register("rua")}/> 
                     </div>
+
                     <div className=" flex gap-4">
-                    <select className="border-black border w-38 h-10" {...register("distanciaDesejada")}>
+                    <select className="outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm" {...register("distanciaDesejada")}>
                         <option disabled selected>Distância máxima desejada</option>
                         <option value="1km">1Km</option>
                         <option value="4km">5Km</option>
                         <option value="10km">10Km</option>
                     </select>
-                        <input placeholder="Estado" className="border-black border w-24 h-10"type = "text" {...register("estado")}/>
+                        <input placeholder="Estado" className="outline-azulEscuro placeholder-gray-500 p-6 w-52 border h-14 rounded border-gray-400"type = "text" {...register("estado")}/>
                     </div>
-                    <button onClick={trocarTela}  className="border-black border h-10">
-                        Concluir
-                    </button>
+                    <div className="flex justify-center">
+                        <button onClick={trocarTela}  className=" w-32 h-10  bg-corAzul hover:bg-azulEscuro ease-linear duration-300 font-bold text-white rounded ">
+                            Avançar
+                        </button>
+                       
+                    </div>
                 </form> 
             </div>
          </div>

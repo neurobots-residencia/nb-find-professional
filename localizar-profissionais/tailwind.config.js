@@ -17,10 +17,21 @@ export default {
         'md': {'min': '768px', 'max': '991px'},
         'lg': {'min': '992px', 'max': '1199px'},
         'xl': {'min': '1200px'},
+      },
+      spacing:{
+        fundoCard: '580px',
+        cardPac: '600px'
+      },
+      fontFamily: {
+        'poppins': ['Poppins', 'sans-serif']
+      },
+      colors: {
+        corAzul: '#556cd6',
+        azulEscuro: '#465cc1'
       }
-      
     },
   },
   plugins: [],
+
 }
 
