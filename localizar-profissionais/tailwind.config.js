@@ -20,7 +20,8 @@ export default {
       },
       spacing:{
         fundoCard: '580px',
-        cardPac: '600px'
+        cardPac: '600px',
+        card: '400px'
       },
       fontFamily: {
         'poppins': ['Poppins', 'sans-serif']
