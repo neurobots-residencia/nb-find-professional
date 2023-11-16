@@ -68,30 +68,30 @@ export default function Map() {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
        {data.map((clinic, index) => {
-        const distanceInKm = distance(-8.1428754,-34.9112595, clinic.lat, clinic.long);
-        console.log(distanceInKm.toFixed(2));
+        // const distanceInKm = distance(-8.1428754,-34.9112595, clinic.lat, clinic.long);
+        // console.log(distanceInKm.toFixed(2));
         if (true) {
           return (
             <>
               <Marker
-              key={index}
-              position={[parseFloat(clinic.long), parseFloat(clinic.lat)]}
-              icon= {
-                new icon ({
-                  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
-                  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-                  iconSize: [25, 41],
-                  iconAnchor: [12, 41],
-                  popupAnchor: [1, -34],
-                  shadowSize: [41, 41]
-                })
-              }
-              eventHandlers={{
-                click: (event) => {
-                  console.log(index)
-                  setMarkerId(index)
+                key={index}
+                position={[parseFloat(clinic.long), parseFloat(clinic.lat)]}
+                icon={
+                  new icon ({
+                    iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+                    shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                    iconSize: [25, 41],
+                    iconAnchor: [12, 41],
+                    popupAnchor: [1, -34],
+                    shadowSize: [41, 41]
+                  })
                 }
-              }}
+                eventHandlers={{
+                  click: (event) => {
+                    console.log(index)
+                    setMarkerId(index)
+                  }
+                }}
               >
                 <Popup>{clinic.clinica}</Popup>
               </Marker>
