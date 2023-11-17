@@ -19,11 +19,11 @@ export default function TelaMapa(props) {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col bg-neuroback bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full">
-      <div className="px-6 py-5 flex items-center justify-between border-b  bg-slate-950 h-28">
-        <div className="flex flex-row flex-nowrap items-center">
+    <div className="min-h-screen flex flex-col bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full">
+      <div className="px-6 py-5 flex items-center justify-between border-b  bg-slate-950 h-24">
+        <div className="flex gap-4 items-center">
           <img className="h-10 pl-8 pr-3"src="/assets/neurobots_logo.png" alt="Logo Neurobots"></img>
-          <img className = "w-64" src="/assets/neurobots_name.png" alt="Nome Neurobots" ></img>
+          <img className = "w-56" src="/assets/neurobots_name.png" alt="Nome Neurobots" ></img>
         </div>
         <div className="flex items-center gap-3">
           <button className="text-white">
@@ -44,7 +44,7 @@ export default function TelaMapa(props) {
 
       <main className="flex-1 p-6 flex gap-6">  
         <div className="flex flex-col flex-1 gap-4 items-center h-[60vh] overflow-hidden">
-          <div className="grid gap-4 flex overflow-y-scroll right-[-30px] relative">
+          <div className="grid gap-2  overflow-y-scroll right-[-30px] relative">
           {data.map((data, index) =>{
             return <Card 
             key={index} 
@@ -56,19 +56,12 @@ export default function TelaMapa(props) {
             />
            })}  
           </div>
-          <button>
-            <ArrowDownCircle size={30} />
-          </button>
         </div>
-        <div className="items-center relative w-1/4">
+        <div className="items-center relative w-3/6">
           <Map />
         </div>
       </main>
-      <div className="p-10 flex items-center justify-center">
-        <button className="bg-emerald-500 px-16 py-5 rounded-full items-center text-white text-lg hover:bg-emerald-400 ">
-          Concluir
-        </button>
-      </div>
+    
     </div>
   );
 }

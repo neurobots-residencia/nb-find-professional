@@ -8,7 +8,7 @@ export default function CadastroLocalizacao(){
     const{register, handleSubmit, setFocus, setValue, formState: {erros}} = useForm()
     const checkCEP = (e) => {
         const cep = e.target.value.replace(/\D/g, '');
-        fetch(`https://viacep.com.br/ws/${cep}/json/`).then(response => response.json())
+        fetch(`https://api-clinics.rj.r.appspot.com/cep/${cep}`).then(response => response.json())
         .then(data => {
           setValue('estado', data.uf);
           setValue('cidade', data.localidade);
