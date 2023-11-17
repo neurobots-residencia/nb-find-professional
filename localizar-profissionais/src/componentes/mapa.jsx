@@ -6,6 +6,9 @@ import { useStore } from "../scripts/controlador-estados";
 import * as turf from '@turf/turf'
 import {icon} from 'leaflet'
 import RoutingMachine from "./Rotas"
+import "leaflet-routing-machine";
+import { createControlComponent } from "@react-leaflet/core";
+import L from "leaflet";
 
 // const mapBoxApiKey = 'pk.eyJ1IjoiYXJ0dXJwYXoiLCJhIjoiY2xvOHhrYWdlMDQ2YzJqbnY0dHF6czljbSJ9.P8Gfn_n1_abgrFm4ygkcSg'
 
@@ -25,20 +28,7 @@ import RoutingMachine from "./Rotas"
     var distance = turf.distance(from, to, {units: 'kilometers'});
     console.log(distance.toFixed(2));*/
     // fórmula da distância entre duas coordenadas.
-    function distance(lat1, lon1, lat2, lon2) {
-      const radlat1 = Math.PI * lat1/180;
-      const radlat2 = Math.PI * lat2/180;
-      const radlon1 = Math.PI * lon1/180;
-      const radlon2 = Math.PI * lon2/180;
-      const theta = lon1-lon2;
-      const radtheta = Math.PI * theta/180;
-      let dist = Math.sin(radlat1) * Math.sin(radlat2) + Math.cos(radlat1) * Math.cos(radlat2) * Math.cos(radtheta);
-      dist = Math.acos(dist);
-      dist = dist * 180/Math.PI;
-      dist = dist * 60 * 1.1515;
-      dist = dist * 1.609344;
-      return dist;
-    }
+
 export default function Map() {
 
   const { idMarcador, setMarkerId } = useStore();
@@ -49,12 +39,14 @@ export default function Map() {
     axios.get("https://api-clinics.rj.r.appspot.com/all")
       .then((response) => {
         setData(response.data);
+        
       })
       .catch((error) => {
         console.error("Erro na solicitação: ", error);
       });
   }, []);
- 
+
+  
   return (
     <MapContainer
       style={{ position: "relative" , width: "100%", height: "100%  "}}
@@ -67,12 +59,15 @@ export default function Map() {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-       {data.map((clinic, index) => {
-        const distanceInKm = distance(-8.1428754,-34.9112595, clinic.lat, clinic.long);
-        console.log(distanceInKm.toFixed(2));
+        {data.map((clinic, index) => {
+        
+  
+      <RoutingMachine/>
+        
         if (true) {
           return (
             <>
+              <RoutingMachine origin="teste" destination="teste2" />
               <Marker
               key={index}
               position={[parseFloat(clinic.long), parseFloat(clinic.lat)]}
@@ -95,12 +90,13 @@ export default function Map() {
               >
                 <Popup>{clinic.clinica}</Popup>
               </Marker>
-              <RoutingMachine/>
+              
             </>
           );
           
         }
       })}
+   
      
     </MapContainer>
    
