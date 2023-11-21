@@ -1,22 +1,13 @@
-import { ArrowDownCircle, ArrowLeft, SunIcon } from "lucide-react";
+import { ArrowLeft, SunIcon } from "lucide-react";
 import Map from "./mapa";
 import Card from "./card";
-import axios from "axios";
-import { useEffect, useState } from "react";
+// import axios from "axios";
+
+import { useStore } from "../scripts/controlador-estados";
 
 export default function TelaMapa(props) {
 
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    axios.get("https://api-clinics.rj.r.appspot.com/all")
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch((error) => {
-        console.error("Erro na solicitação: ", error);
-      });
-  }, []);
+  const { data } = useStore();
 
   return (
     <div className="min-h-screen flex flex-col bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full">

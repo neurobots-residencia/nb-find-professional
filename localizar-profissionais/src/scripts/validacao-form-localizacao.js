@@ -76,3 +76,9 @@ export default function CadastroLocalizacao() {
               <option value="10km">10Km</option>
             </select>
             {errors.distanciaDesejada && <p className="text-red-500">{errors.distanciaDesejada.message}</p>}
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
