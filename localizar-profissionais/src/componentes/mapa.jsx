@@ -12,7 +12,8 @@ export default function Map() {
   useEffect(() => {
     fetch();
   }, []);
- 
+
+  
   return (
     <MapContainer
       style={{ position: "relative" , width: "100%", height: "100%  "}}
@@ -28,6 +29,7 @@ export default function Map() {
        {data.map((clinic, index) => {
           return (
             <>
+              <RoutingMachine origin="teste" destination="teste2" />
               <Marker
                 setMarkerId={index}
                 key={index}
@@ -51,9 +53,6 @@ export default function Map() {
               >
                 <Popup>{clinic.clinica}</Popup>
               </Marker>
-            </>
-          );
-        }
       )
     } 
     </MapContainer>
