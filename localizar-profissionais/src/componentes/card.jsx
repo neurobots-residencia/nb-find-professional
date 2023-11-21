@@ -1,6 +1,5 @@
 import React from "react";
 import { useStore } from "../scripts/controlador-estados";
-import TelaMapa from "./localizacao-profissionais";
 
 const Card = (props) => {
 
@@ -20,7 +19,11 @@ const Card = (props) => {
         <div>Email: {props.email}</div>
         <div>Distancia: {props.distancia}</div>
         <button  className="m-4 w-32 h-8 ml-20  bg-corAzul hover:bg-azulEscuro ease-linear duration-300 font-bold text-white rounded"
-          onClick={(event) => {console.log(event.currentTarget.parentElement.parentElement.id)}}>
+          onClick={(event) => {
+            console.log(event.currentTarget.parentElement.parentElement.id)
+            console.log(event.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement)
+          }
+          }>
            Ver trajeto
         </button>
       </div>
