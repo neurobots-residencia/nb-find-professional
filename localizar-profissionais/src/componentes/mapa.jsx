@@ -3,11 +3,12 @@ import "leaflet/dist/leaflet.css";
 import { useStore } from "../scripts/controlador-estados";
 import {icon} from 'leaflet'
 import RoutingMachine from "./Rotas"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Map() {
 
   const { data, fetch } = useStore();
+  const [ setMap ] = useState(null);
   
   useEffect(() => {
     fetch();
@@ -16,7 +17,9 @@ export default function Map() {
   
   return (
     <MapContainer
-      style={{ position: "relative" , width: "100%", height: "100%  "}}
+      whenCreated={setMap}
+      id="mapa"
+      style={{ position: "relative" , width: "100%", height: "100%" }}
       center={[-8.095500365761255, -34.911881534373244]}
       zoom={12.5}
       scrollWheelZoom={true}
@@ -45,13 +48,18 @@ export default function Map() {
                   })
                 }
                 eventHandlers={{
-                  click: (event) => {
+                  click: () => {
                     console.log(index)
                   }
                 }}
               >
                 <Popup>{clinic.clinica}</Popup>
               </Marker>
-          
+
             </>
-          )})} </MapContainer> )}
+          )
+        })
+      } 
+    </MapContainer> 
+  )
+}
