@@ -2,7 +2,7 @@ import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useStore } from "../scripts/controlador-estados";
 import {icon} from 'leaflet'
-import routing from "./Rotas"
+import RoutingMachine from "./Rotas"
 import { useEffect } from "react";
 
 export default function Map() {
@@ -47,14 +47,11 @@ export default function Map() {
                 eventHandlers={{
                   click: (event) => {
                     console.log(index)
-                    setMarkerId(index)
                   }
                 }}
               >
                 <Popup>{clinic.clinica}</Popup>
               </Marker>
-      )
-    } 
-    </MapContainer>
-  );
-}
+          
+            </>
+          )})} </MapContainer> )}
