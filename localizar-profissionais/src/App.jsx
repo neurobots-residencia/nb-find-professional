@@ -4,6 +4,7 @@ import TelaInicial from "./componentes/tela-inicial";
 import CadastroPaciente from './componentes/cadastro-paciente';
 import CadastroLocalizacao from './componentes/cadastro-localizacao';
 import TelaMapa from './componentes/localizacao-profissionais'
+
 function App() {
   return (
     <div>
