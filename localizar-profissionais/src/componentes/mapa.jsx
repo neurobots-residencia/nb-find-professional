@@ -32,9 +32,9 @@ export default function Map() {
        {data.map((clinic, index) => {
           return (
             <>
-              <RoutingMachine origin="teste" destination="teste2" />
+              <RoutingMachine origin="teste" destination="teste2"/>
               <Marker
-                setMarkerId={index}
+                setMarkerid={'teste'}
                 key={index}
                 position={[parseFloat(clinic.long), parseFloat(clinic.lat)]}
                 icon={
@@ -48,8 +48,9 @@ export default function Map() {
                   })
                 }
                 eventHandlers={{
-                  click: () => {
+                  click: (event) => {
                     console.log(index)
+                    console.log(id)
                   }
                 }}
               >
