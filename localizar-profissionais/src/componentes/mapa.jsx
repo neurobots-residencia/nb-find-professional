@@ -3,17 +3,26 @@ import "leaflet/dist/leaflet.css";
 import { useStore } from "../scripts/controlador-estados";
 import {icon} from 'leaflet'
 import RoutingMachine from "./Rotas"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 export default function Map() {
-
-  const { data, fetch } = useStore();
-  const [ setMap ] = useState(null);
   
+  const { data, fetch, origem, destino } = useStore();
+  const [ setMap ] = useState(null);
+
+  const rMachine = useRef();
+  const pointsToUse = [
+    origem,
+    destino
+  ];
+
   useEffect(() => {
     fetch();
-  }, []);
-
+    if (rMachine.current) {
+      console.log(rMachine.current);
+      rMachine.current.setWaypoints(pointsToUse);
+    }
+  }, [rMachine]);
   
   return (
     <MapContainer
@@ -32,9 +41,8 @@ export default function Map() {
        {data.map((clinic, index) => {
           return (
             <>
-              <RoutingMachine origin="teste" destination="teste2"/>
               <Marker
-                setMarkerid={'teste'}
+                alt={`marcador${index}`}
                 key={index}
                 position={[parseFloat(clinic.long), parseFloat(clinic.lat)]}
                 icon={
@@ -48,19 +56,19 @@ export default function Map() {
                   })
                 }
                 eventHandlers={{
-                  click: (event) => {
+                  click: () => {
                     console.log(index)
-                    console.log(id)
+                    // storeClickedMarker(data[index])
                   }
                 }}
               >
                 <Popup>{clinic.clinica}</Popup>
               </Marker>
-
             </>
           )
         })
-      } 
+      }
+      <RoutingMachine ref={rMachine} waypoints={pointsToUse} />
     </MapContainer> 
   )
 }

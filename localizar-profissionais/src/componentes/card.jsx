@@ -3,9 +3,9 @@ import { useStore } from "../scripts/controlador-estados";
 
 const Card = (props) => {
 
-  const { idMarcador, selectMarker } = useStore();
+  const { data, armazenaDestino } = useStore();
 
-  return ( // Estilo quando em foco pelo click do marcador está após ? e o estilo quando perder o foco após :
+  return (
     <div className=" w-card p-1 border flex flex-row justify-evenly rounded-lg border-gray-600 placeholder-gray-500" id={props.id}>
       <div className="flex flex-col min-w-min max-w-xs gap-1">
         <div className="flex text-center gap-4 py-4">
@@ -20,11 +20,15 @@ const Card = (props) => {
         <div>Distancia: {props.distancia}</div>
         <button  className="m-4 w-32 h-8 ml-20  bg-corAzul hover:bg-azulEscuro ease-linear duration-300 font-bold text-white rounded"
           onClick={(event) => {
-            console.log(event.currentTarget.parentElement.parentElement.id)
-            console.log(event.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector("#mapa").querySelector(".leaflet-marker-pane").index)
-          }
-          }>
-           Ver trajeto
+            // console.log(event.currentTarget.parentElement.parentElement.id)
+            // console.log(document.querySelector(`img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`))
+            document.querySelector(`img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`).click()
+            console.log(data[event.currentTarget.parentElement.parentElement.id].lat)
+            console.log(data[event.currentTarget.parentElement.parentElement.id].long)
+            armazenaDestino(data[event.currentTarget.parentElement.parentElement.id].lat, data[event.currentTarget.parentElement.parentElement.id].long)
+          }}
+        >
+          Ver trajeto
         </button>
       </div>
 
