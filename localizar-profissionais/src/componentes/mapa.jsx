@@ -1,24 +1,23 @@
 import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useStore } from "../scripts/controlador-estados";
-import {icon} from 'leaflet'
+import { icon } from 'leaflet'
 import RoutingMachine from "./Rotas"
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Map() {
   
   const { data, fetch, origem, destino } = useStore();
-  const [ setMap ] = useState(null);
 
-  const rMachine = useRef();
+  const rMachine = useRef(null);
   const pointsToUse = [
     origem,
     destino
   ];
 
   useEffect(() => {
-    fetch();
-    if (rMachine.current) {
+    fetch();  
+    if (rMachine.current) { 
       console.log(rMachine.current);
       rMachine.current.setWaypoints(pointsToUse);
     }
@@ -26,12 +25,12 @@ export default function Map() {
   
   return (
     <MapContainer
-      whenCreated={setMap}
       id="mapa"
       style={{ position: "relative" , width: "100%", height: "100%" }}
-      center={[-8.095500365761255, -34.911881534373244]}
+      center={origem}
       zoom={12.5}
-      scrollWheelZoom={true}
+      scrollWheelZoom={false}
+      dragging={false}
     >
       
       <TileLayer
@@ -56,9 +55,9 @@ export default function Map() {
                   })
                 }
                 eventHandlers={{
-                  click: () => {
-                    console.log(index)
-                    // storeClickedMarker(data[index])
+                  click: (event) => {
+                    rMachine.current.setWaypoints(pointsToUse);
+                    console.log('teste')
                   }
                 }}
               >
@@ -68,7 +67,10 @@ export default function Map() {
           )
         })
       }
-      <RoutingMachine ref={rMachine} waypoints={pointsToUse} />
+      <RoutingMachine 
+        ref={rMachine} 
+        waypoints={pointsToUse}
+      />
     </MapContainer> 
   )
 }

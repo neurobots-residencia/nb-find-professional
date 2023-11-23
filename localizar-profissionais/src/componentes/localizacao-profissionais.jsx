@@ -52,7 +52,6 @@ export default function TelaMapa(props) {
           <Map />
         </div>
       </main>
-    
     </div>
   );
 }

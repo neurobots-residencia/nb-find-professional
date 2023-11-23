@@ -6,46 +6,23 @@ L.Marker.prototype.options.icon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png"
 });
 
-// const routing = ({ pointBLat, pointBLng }) => {
-//   const createRoutineMachineLayer = () => {
-    
-//     const instance = L.Routing.control({
-//       waypoints: [
-//         L.latLng(-8.095500365761255, -34.911881534373244), 
-//         L.latLng(pointBLat, pointBLng)
-//       ],
-//     });
-//     return instance;
-//   };  
-//  const RoutingMachine = createControlComponent(createRoutineMachineLayer);
-//  return <RoutingMachine />
-// }
-
-// export default routing
-
-
-
-// const createRoutineMachineLayer = () => {
-  
-//   const instance = L.Routing.control({ 
-//     waypoints: [
-//       L.latLng(-8.095500365761255, -34.911881534373244), 
-//       L.latLng(-8.121001691028944, -34.914051191947905)
-//     ],
-//   });
-//   return instance;
-// };  
-// const RoutingMachine = createControlComponent(createRoutineMachineLayer);
-// export default RoutingMachine
-
-
-
 const createRoutineMachineLayer = (props) => {
   const { waypoints } = props;
+
   const instance = L.Routing.control({
-    waypoints
+    waypoints,
+    lineOptions : {
+      addWaypoints: false,
+      draggableWaypoints: false 
+  },
+    language: 'pt-BR'
   });
 
+  if(instance != null) {
+    instance.spliceWaypoints(0, 2)
+  }
+
+  console.log(instance)
   return instance;
 };
 const RoutingMachine = createControlComponent(createRoutineMachineLayer);
