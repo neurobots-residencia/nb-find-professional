@@ -1,44 +1,50 @@
+import L from "leaflet";
 import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useStore } from "../scripts/controlador-estados";
-import {icon} from 'leaflet'
+import { icon } from 'leaflet'
 import RoutingMachine from "./Rotas"
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import "leaflet-easybutton/src/easy-button.js";
+import "leaflet-easybutton/src/easy-button.css";
 
 export default function Map() {
   
-  const { data, fetch, origem, destino } = useStore();
+  // const EasyButton = L.easyButton("<div>Your Text</div>", function (btn, map) {
+  //   // Code here...
+  // })
+  const { data, fetch, origem, destino } = useStore();  
   const [ setMap ] = useState(null);
-
-  const rMachine = useRef();
+  const rMachine = useRef(null);
   const pointsToUse = [
     origem,
     destino
   ];
 
   useEffect(() => {
-    fetch();
-    if (rMachine.current) {
+    fetch();  
+    if (rMachine.current) { 
       console.log(rMachine.current);
       rMachine.current.setWaypoints(pointsToUse);
-    }
+    }  
   }, [rMachine]);
   
   return (
     <MapContainer
-      whenCreated={setMap}
       id="mapa"
       style={{ position: "relative" , width: "100%", height: "100%" }}
-      center={[-8.095500365761255, -34.911881534373244]}
+      center={origem}
       zoom={12.5}
-      scrollWheelZoom={true}
+      scrollWheelZoom={false}
+      doubleClickZoom={false}
+      dragging={false}
+      whenCreated={setMap}
     >
-      
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-       {data.map((clinic, index) => {
+      {data.map((clinic, index) => {
           return (
             <>
               <Marker
@@ -57,8 +63,8 @@ export default function Map() {
                 }
                 eventHandlers={{
                   click: () => {
-                    console.log(index)
-                    // storeClickedMarker(data[index])
+                    rMachine.current.setWaypoints(pointsToUse);
+                    console.log('teste')
                   }
                 }}
               >
@@ -68,7 +74,10 @@ export default function Map() {
           )
         })
       }
-      <RoutingMachine ref={rMachine} waypoints={pointsToUse} />
+      <RoutingMachine 
+        ref={rMachine} 
+        waypoints={pointsToUse}
+      />
     </MapContainer> 
   )
 }

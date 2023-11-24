@@ -25,7 +25,7 @@ const Card = (props) => {
             document.querySelector(`img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`).click()
             console.log(data[event.currentTarget.parentElement.parentElement.id].lat)
             console.log(data[event.currentTarget.parentElement.parentElement.id].long)
-            armazenaDestino(data[event.currentTarget.parentElement.parentElement.id].lat, data[event.currentTarget.parentElement.parentElement.id].long)
+            armazenaDestino(data[event.currentTarget.parentElement.parentElement.id].long, data[event.currentTarget.parentElement.parentElement.id].lat)
           }}
         >
           Ver trajeto
