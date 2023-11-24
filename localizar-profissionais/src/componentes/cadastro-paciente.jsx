@@ -9,7 +9,7 @@ export default function CadastroPaciente(){
         <div className=" bg-telaInicial min-h-screen bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full ">
             <div className=" flex justify-center items-center h-screen font-poppins">
                 
-                <form className="w-cardPac h-cardPac p-12 bg-white flex flex-col gap-8 rounded-md ">
+                <form className="w-cardPac h-cardPac p-12 bg-white flex flex-col gap-8 rounded-md sm:w-smFundoCard ">
                     <label className="text-2xl font-bold">Informações do paciente</label>
                     <div className=" flex gap-6">
                         <input placeholder="Nome*"  {...register("nome")} className="outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 "  type = "text"/>

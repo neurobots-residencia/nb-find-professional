@@ -22,7 +22,7 @@ export default function CadastroLocalizacao(){
         <div className=" bg-telaInicial min-h-screen bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full ">
             <div className=" flex justify-center items-center h-screen font-poppins">
             
-                <form onSubmit = {handleSubmit} className=" w-fundoCard h-fundoCard p-12 bg-white flex flex-col gap-8 rounded-md ">
+                <form onSubmit = {handleSubmit} className=" w-fundoCard h-fundoCard p-12 bg-white flex flex-col gap-8 rounded-md sm:w-smFundoCard sm:h-smFundoCard">
                     <label className="text-2xl font-bold mt-6">Localização </label>
                     <div className="flex flex-col gap-6">
                         <input id = "cep" placeholder="CEP*"  className="outline-azulEscuro placeholder-gray-500 border p-6  h-14 rounded border-gray-400" type="text" {...register("cep")} onBlur= {checkCEP}/>

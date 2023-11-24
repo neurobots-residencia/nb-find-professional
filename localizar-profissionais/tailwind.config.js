@@ -13,12 +13,14 @@ export default {
       },
 
       screens: {
+        'xm': {'min': '350px', 'max': '575px'},
         'sm': {'min': '576px', 'max': '767px'},
         'md': {'min': '768px', 'max': '991px'},
         'lg': {'min': '992px', 'max': '1199px'},
         'xl': {'min': '1200px'},
       },
       spacing:{
+        smFundoCard: '550px',
         fundoCard: '580px',
         cardPac: '600px',
         card: '400px'

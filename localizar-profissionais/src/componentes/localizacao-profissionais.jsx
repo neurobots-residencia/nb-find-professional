@@ -36,7 +36,7 @@ export default function TelaMapa(props) {
         <a className="m-3">
           <ArrowLeft size={40} />
         </a>
-        <p className="text-4xl justify-center text-black font-semibold">
+        <p className="text-4xl justify-center text-black font-semibold lg:text-3xl lg:indent-32 md:text-2xl md:indent-16 sm:text-xl sm:indent-10">
           Olá <span className="text-teal-300">{props.nome}</span>, aqui está a lista de profissionais mais próxima
           de você
         </p>
