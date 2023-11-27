@@ -3,7 +3,7 @@ import { useStore } from "../scripts/controlador-estados";
 
 const Card = (props) => {
 
-  const { data, armazenaDestino } = useStore();
+  const { data, destino, armazenaDestino, origem } = useStore();
 
   return (
     <div className=" w-card p-1 border flex flex-row justify-evenly rounded-lg border-gray-600 placeholder-gray-500" id={props.id}>
@@ -18,14 +18,12 @@ const Card = (props) => {
         <div>Telefone: {props.contato} </div>
         <div>Email: {props.email}</div>
         <div>Distancia: {props.distancia}</div>
-        <button  className="m-4 w-32 h-8 ml-20  bg-corAzul hover:bg-azulEscuro ease-linear duration-300 font-bold text-white rounded"
+        <button  
+          className="m-4 w-32 h-8 ml-20  bg-corAzul hover:bg-azulEscuro ease-linear duration-300 font-bold text-white rounded"
           onClick={(event) => {
-            // console.log(event.currentTarget.parentElement.parentElement.id)
-            // console.log(document.querySelector(`img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`))
-            document.querySelector(`img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`).click()
-            console.log(data[event.currentTarget.parentElement.parentElement.id].lat)
-            console.log(data[event.currentTarget.parentElement.parentElement.id].long)
             armazenaDestino(data[event.currentTarget.parentElement.parentElement.id].long, data[event.currentTarget.parentElement.parentElement.id].lat)
+            document.querySelector(`img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`).click()
+            console.log(origem)
           }}
         >
           Ver trajeto

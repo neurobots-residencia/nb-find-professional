@@ -1,4 +1,3 @@
-import L from "leaflet";
 import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useStore } from "../scripts/controlador-estados";
@@ -10,11 +9,7 @@ import "leaflet-easybutton/src/easy-button.css";
 
 export default function Map() {
   
-  // const EasyButton = L.easyButton("<div>Your Text</div>", function (btn, map) {
-  //   // Code here...
-  // })
   const { data, fetch, origem, destino } = useStore();  
-  const [ setMap ] = useState(null);
   const rMachine = useRef(null);
   const pointsToUse = [
     origem,
@@ -27,6 +22,7 @@ export default function Map() {
       console.log(rMachine.current);
       rMachine.current.setWaypoints(pointsToUse);
     }  
+    // console.log(origem)
   }, [rMachine]);
   
   return (
@@ -36,9 +32,7 @@ export default function Map() {
       center={origem}
       zoom={12.5}
       scrollWheelZoom={false}
-      doubleClickZoom={false}
       dragging={false}
-      whenCreated={setMap}
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -62,9 +56,9 @@ export default function Map() {
                   })
                 }
                 eventHandlers={{
-                  click: () => {
+                  click: (event) => { 
                     rMachine.current.setWaypoints(pointsToUse);
-                    console.log('teste')
+                    // console.log('teste')
                   }
                 }}
               >

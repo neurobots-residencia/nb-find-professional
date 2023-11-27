@@ -17,7 +17,7 @@ export const useStore = create((set) => ({
         set({ data: await response.json()})
     },
     
-    armazenaOrigem: (payload) => set({origem: payload}),
+    armazenaOrigem: (payload1, payload2) => set({origem: [payload1, payload2]}),    
     armazenaDestino: (payload1, payload2) => set({destino: [payload1, payload2]}),
 
     selectCard: () => set((state) => ({ isMarkerSelected: !state.isMarkerSelected })),

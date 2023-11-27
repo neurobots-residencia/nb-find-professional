@@ -50,9 +50,20 @@ export default function TelaMapa(props) {
         </div>
         <div className="items-center relative w-3/6">
           <Map />
+          <button
+            onClick={()=>{
+              const descRota = document.querySelector(".leaflet-routing-alternatives-container") 
+              if(descRota.classList.contains('hidden')){
+                descRota.classList.remove('hidden')
+              }else{
+                descRota.classList.add('hidden')
+              }
+            }}
+          >
+          Esconde descrição da rota
+          </button>
         </div>
       </main>
-    
     </div>
   );
 }
