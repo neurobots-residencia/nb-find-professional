@@ -1,6 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { useForm, Controller } from "react-hook-form";
+import { useStore } from "../scripts/controlador-estados";
+
 export default function CadastroPaciente() {
+  
+  const { 
+    armazenaName, 
+    armazenaWhatsapp, 
+    armazenaEmail, 
+    armazenaHasAvc, 
+    armazenaInvestmentAmount 
+  } = useStore();
   const navigate = useNavigate();
   const trocarTela = () => navigate("/cadastroLocalizacao");
   const {
@@ -10,19 +20,25 @@ export default function CadastroPaciente() {
     formState: { errors },
   } = useForm();
   const onSubmit = () => {
+    armazenaName(document.querySelector('#nome').value);
+    armazenaWhatsapp(document.querySelector('#whatsapp').value);
+    armazenaEmail(document.querySelector('#email').value);
+    armazenaHasAvc(document.querySelector('#historicoAVCFamilia').value);
+    armazenaInvestmentAmount(document.querySelector('#valorInvestir').value);
     trocarTela();
   };
+  
   return (
     <div className=" bg-telaInicial min-h-screen bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full ">
       <div className=" flex justify-center items-center h-screen font-poppins">
         <form
-          obrigatorio={true}
           onSubmit={handleSubmit(onSubmit)}
           className="w-cardPac h-cardPac p-12 bg-white flex flex-col gap-8 rounded-md "
         >
           <label className="text-2xl font-bold">Informações do paciente</label>
           <div className=" flex gap-6">
             <input
+              id='nome'
               placeholder="Nome*"
               {...register("nome", {
                 required: "Campo obrigatório",
@@ -38,6 +54,7 @@ export default function CadastroPaciente() {
               <p className="text-red-500">{errors.nome.message}</p>
             )}
             <input
+            id='whatsapp'
               placeholder="whatsapp*"
               {...register("whatsapp", {
                 required: "Campo obrigatório",
@@ -54,6 +71,7 @@ export default function CadastroPaciente() {
             )}
           </div>
           <input
+            id='email'
             placeholder="Email*"
             className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400"
             type="email"
@@ -100,10 +118,9 @@ export default function CadastroPaciente() {
             <Controller
               name="historicoAVCFamilia"
               control={control}
-              defaultValue=""
               rules={{ required: "Por favor, selecione uma opção" }}
               render={({ field }) => (
-                <select {...field}>
+                <select {...field} id='historicoAVCFamilia'>
                   <option value="" disabled hidden>
                     Você tem AVC na familia?
                   </option>
@@ -120,10 +137,9 @@ export default function CadastroPaciente() {
             <Controller
               name="valorInvestir"
               control={control}
-              defaultValue=""
               rules={{ required: "Por favor, selecione um valor a investir" }}
               render={({ field }) => (
-                <select {...field}>
+                <select {...field} id='valorInvestir'>
                   <option value="" disabled hidden>
                     Não tenho valor para investir
                   </option>

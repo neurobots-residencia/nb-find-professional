@@ -6,7 +6,11 @@ import { useStore } from "../scripts/controlador-estados";
 export default function CadastroLocalizacao() {
   const navigate = useNavigate();
   const trocarTela = () => navigate("/localizacaoProfissionais");
-  // const { armazenaOrigem } = useStore();
+  const { 
+    armazenaOrigem,
+    armazenaCity,
+    armazenaState
+   } = useStore();
 
   const {
     register,
@@ -26,9 +30,11 @@ export default function CadastroLocalizacao() {
       fetch(`https://api-clinics.rj.r.appspot.com/cep/${cep}`)
         .then((response) => response.json())
         .then((data) => {
+          armazenaCity(data.localidade);
+          armazenaState(data.uf);
           setValue("estado", data.uf);
           setValue("cidade", data.localidade);
-          setValue("rua", data.logradouro);
+          setValue("rua", data.logradouro); 
           setFocus("distancia");
         });
     }
@@ -65,6 +71,7 @@ export default function CadastroLocalizacao() {
               placeholder="Cidade"
               className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400"
               type="text"
+              {...register("cidade")}
             />
 
             <input

@@ -4,7 +4,6 @@ import { useForm } from "react-hook-form";
 export default function CadastroLocalizacao() {
   const navigate = useNavigate();
   const trocarTela = () => navigate('/localizacaoProfissionais');
-
   const {
     register,
     handleSubmit,
@@ -18,7 +17,6 @@ export default function CadastroLocalizacao() {
 
   const checkCEP = (e) => {
     const cep = e.target.value.replace(/\D/g, '');
-
 
     if (cep.length === 8) {
       fetch(`https://viacep.com.br/ws/${cep}/json/`)

@@ -1,13 +1,16 @@
 import { ArrowLeft, SunIcon } from "lucide-react";
 import Map from "./mapa";
 import Card from "./card";
-// import axios from "axios";
+import { useEffect } from "react";
 
 import { useStore } from "../scripts/controlador-estados";
 
 export default function TelaMapa(props) {
-  const { data } = useStore();
+  const { data, fetch } = useStore();
 
+  useEffect(()=> {
+    fetch() 
+  }, [])
   return (
     <div className="min-h-screen flex flex-col bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full">
       <div className="px-6 py-5 flex items-center justify-between border-b  bg-slate-950 h-24">

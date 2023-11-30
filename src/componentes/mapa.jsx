@@ -8,18 +8,9 @@ import "leaflet-easybutton/src/easy-button.js";
 import "leaflet-easybutton/src/easy-button.css";
 
 export default function Map() {
-  const { data, fetch, origem, destino } = useStore();
+  const { data, origem, destino} = useStore();
   const rMachine = useRef(null);
   const pointsToUse = [origem, destino];
-
-  useEffect(() => {
-    fetch();
-    if (rMachine.current) {
-      console.log(rMachine.current);
-      rMachine.current.setWaypoints(pointsToUse);
-    }
-    // console.log(origem)
-  }, [rMachine]);
 
   return (
     <MapContainer
