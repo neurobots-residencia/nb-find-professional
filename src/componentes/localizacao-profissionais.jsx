@@ -2,15 +2,58 @@ import { ArrowLeft, SunIcon } from "lucide-react";
 import Map from "./mapa";
 import Card from "./card";
 import { useEffect } from "react";
-
+// import postData from "../scripts/post-dados";
 import { useStore } from "../scripts/controlador-estados";
 
 export default function TelaMapa(props) {
-  const { data, fetch } = useStore();
+  const {
+    data,
+    fetch,
+    name,
+    email,
+    whatsapp,
+    state,
+    city,
+    hasAvc,
+    hasAnotherCondition,
+    investmentAmount,
+    origem,
+    armazenaName,
+    armazenaOrigem
+  } = useStore();
 
-  useEffect(()=> {
-    fetch() 
+  useEffect(() => {
+    fetch()
+    console.log(
+     document.querySelector(
+      ".leaflet-routing-alternatives-container"
+    ))
+    // descRota.classList.add("hidden")
+
+
+    if(sessionStorage.getItem("name") == null){
+      sessionStorage.setItem("name", name);
+      sessionStorage.setItem("lat", origem[0])
+      sessionStorage.setItem("lng", origem[1])
+    }else{
+      armazenaName(sessionStorage.getItem("name"))
+      armazenaOrigem(sessionStorage.getItem("lat"), sessionStorage.getItem("lng"))
+    }
+
+    const hasAvcBool = hasAvc == "sim" ? true : false;
+    const postDataArray = [
+      name,
+      email,
+      whatsapp,
+      state,
+      city,
+      hasAvcBool,
+      hasAnotherCondition,
+      investmentAmount
+    ]
+    console.log(postDataArray)
   }, [])
+  
   return (
     <div className="min-h-screen flex flex-col bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full">
       <div className="px-6 py-5 flex items-center justify-between border-b  bg-slate-950 h-24">
@@ -38,7 +81,7 @@ export default function TelaMapa(props) {
           <ArrowLeft size={40} />
         </a>
         <p className="text-4xl justify-center text-black font-semibold">
-          Olá <span className="text-teal-300">{props.nome}</span>, aqui está a
+          Olá <span className="text-teal-300">{name}</span>, aqui está a
           lista de profissionais mais próxima de você
         </p>
       </div>

@@ -1,17 +1,16 @@
-// import { useStore } from "../scripts/controlador-estados";
-
 const apiKey = '1e469ea4b5d9425c9bbe2b158852c80d';
 
-export const LatLongFromCep = (cep) => {
-  // const { armazenaOrigem } = useStore();
-
+const latLongFromCep = (cep) => {
   fetch(`https://api.opencagedata.com/geocode/v1/json?q=${cep}&key=${apiKey}`)
-  .then(response => response.json())
-  .then(data => {
-    const { lat, lng } = data.results[0].geometry;  
-    // armazenaOrigem(lat ,lng)
-  })
-  .catch(error => {
-    console.error('Erro ao obter dados de geolocalização:', error);
-  });
+    .then(response => response.json())
+    .then(data => {
+      const { lat, lng } = data.results[0].geometry;
+      var origem = [lat, lng]
+      console.log(origem)
+    })
+    .catch(error => {
+      console.error('Erro ao obter dados de geolocalização:', error);
+    });
 }
+
+export default latLongFromCep

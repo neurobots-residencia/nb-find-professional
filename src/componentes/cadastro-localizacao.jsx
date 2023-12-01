@@ -1,16 +1,15 @@
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-// import { latLongFromCep } from "../scripts/tranformacao-form-cep";
 import { useStore } from "../scripts/controlador-estados";
 
 export default function CadastroLocalizacao() {
   const navigate = useNavigate();
   const trocarTela = () => navigate("/localizacaoProfissionais");
-  const { 
-    armazenaOrigem,
+  const {
     armazenaCity,
-    armazenaState
-   } = useStore();
+    armazenaState,
+    fetchLatLong
+  } = useStore();
 
   const {
     register,
@@ -21,6 +20,9 @@ export default function CadastroLocalizacao() {
   } = useForm();
 
   const onSubmit = () => {
+    armazenaCity(document.querySelector('#cidade').value);
+    armazenaState(document.querySelector('#estado').value);
+    fetchLatLong(document.querySelector('#cep').value);
     trocarTela();
   };
 
@@ -30,11 +32,9 @@ export default function CadastroLocalizacao() {
       fetch(`https://api-clinics.rj.r.appspot.com/cep/${cep}`)
         .then((response) => response.json())
         .then((data) => {
-          armazenaCity(data.localidade);
-          armazenaState(data.uf);
           setValue("estado", data.uf);
           setValue("cidade", data.localidade);
-          setValue("rua", data.logradouro); 
+          setValue("rua", data.logradouro);
           setFocus("distancia");
         });
     }
@@ -52,9 +52,8 @@ export default function CadastroLocalizacao() {
             <input
               id="cep"
               placeholder="CEP*"
-              className={`outline-azulEscuro placeholder-gray-500 border p-6  h-14 rounded border-gray-400 ${
-                errors.cep ? "border-red-500" : ""
-              }`}
+              className={`outline-azulEscuro placeholder-gray-500 border p-6  h-14 rounded border-gray-400 ${errors.cep ? "border-red-500" : ""
+                }`}
               type="text"
               {...register("cep", {
                 required: "Campo obrigatório",
@@ -68,6 +67,7 @@ export default function CadastroLocalizacao() {
             {errors.cep && <p className="text-red-500">{errors.cep.message}</p>}
 
             <input
+              id="cidade"
               placeholder="Cidade"
               className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400"
               type="text"
@@ -85,9 +85,8 @@ export default function CadastroLocalizacao() {
 
           <div className=" flex gap-4">
             <select
-              className={`outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm ${
-                errors.distanciaDesejada ? "border-red-500" : ""
-              }`}
+              className={`outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm ${errors.distanciaDesejada ? "border-red-500" : ""
+                }`}
               {...register("distanciaDesejada", {
                 required: "Selecione a distância desejada",
               })}
@@ -104,6 +103,7 @@ export default function CadastroLocalizacao() {
             )}
 
             <input
+              id="estado"
               placeholder="Estado"
               className="outline-azulEscuro placeholder-gray-500 p-6 w-52 border h-14 rounded border-gray-400"
               type="text"

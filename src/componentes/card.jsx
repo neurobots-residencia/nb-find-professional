@@ -30,15 +30,15 @@ const Card = (props) => {
         <button
           className="m-4 w-32 h-8 ml-20  bg-corAzul hover:bg-azulEscuro ease-linear duration-300 font-bold text-white rounded"
           onClick={(event) => {
-            armazenaDestino(
-              data[event.currentTarget.parentElement.parentElement.id].long,
-              data[event.currentTarget.parentElement.parentElement.id].lat
-            );
             document
               .querySelector(
                 `img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`
               )
               .click();
+            armazenaDestino(
+              data[event.currentTarget.parentElement.parentElement.id].long,
+              data[event.currentTarget.parentElement.parentElement.id].lat
+            );
             console.log(origem);
           }}
         >

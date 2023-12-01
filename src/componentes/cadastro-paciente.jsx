@@ -9,6 +9,7 @@ export default function CadastroPaciente() {
     armazenaWhatsapp, 
     armazenaEmail, 
     armazenaHasAvc, 
+    armazenaHasAnotherCondition,
     armazenaInvestmentAmount 
   } = useStore();
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function CadastroPaciente() {
     armazenaWhatsapp(document.querySelector('#whatsapp').value);
     armazenaEmail(document.querySelector('#email').value);
     armazenaHasAvc(document.querySelector('#historicoAVCFamilia').value);
+    armazenaHasAnotherCondition(document.querySelector('#outraCondicao').value)
     armazenaInvestmentAmount(document.querySelector('#valorInvestir').value);
     trocarTela();
   };
@@ -117,6 +119,7 @@ export default function CadastroPaciente() {
 
             <Controller
               name="historicoAVCFamilia"
+              defaultValue = ""
               control={control}
               rules={{ required: "Por favor, selecione uma opção" }}
               render={({ field }) => (
@@ -136,6 +139,7 @@ export default function CadastroPaciente() {
             )}
             <Controller
               name="valorInvestir"
+              defaultValue = ""
               control={control}
               rules={{ required: "Por favor, selecione um valor a investir" }}
               render={({ field }) => (
@@ -155,6 +159,7 @@ export default function CadastroPaciente() {
             )}
           </div>
           <input
+            id="outraCondicao"
             placeholder="Possui outra condição que não seja AVC? Qual?"
             className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400"
             type="text"

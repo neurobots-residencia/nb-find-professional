@@ -1,16 +1,20 @@
-import { MapContainer, Popup, Marker, TileLayer } from "react-leaflet";
+import { MapContainer, Popup, Marker, TileLayer, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useStore } from "../scripts/controlador-estados";
 import { icon } from "leaflet";
 import RoutingMachine from "./Rotas";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import "leaflet-easybutton/src/easy-button.js";
 import "leaflet-easybutton/src/easy-button.css";
 
+function ChangeView({ center }) {
+  const map = useMap();
+  map.setView(center, 12.5);
+}
 export default function Map() {
-  const { data, origem, destino} = useStore();
+  const { data, origem, destino } = useStore();
   const rMachine = useRef(null);
-  const pointsToUse = [origem, destino];
+  const pointsToUse = [origem, destino];  
 
   return (
     <MapContainer
@@ -21,6 +25,7 @@ export default function Map() {
       scrollWheelZoom={false}
       dragging={false}
     >
+      <ChangeView center={origem} zoom={12.5} /> 
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -45,9 +50,8 @@ export default function Map() {
                 })
               }
               eventHandlers={{
-                click: (event) => {
+                click: () => {
                   rMachine.current.setWaypoints(pointsToUse);
-                  // console.log('teste')
                 },
               }}
             >
