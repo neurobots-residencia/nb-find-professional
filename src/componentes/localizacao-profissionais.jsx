@@ -24,20 +24,14 @@ export default function TelaMapa(props) {
 
   useEffect(() => {
     fetch()
-    console.log(
-     document.querySelector(
-      ".leaflet-routing-alternatives-container"
-    ))
-    // descRota.classList.add("hidden")
-
 
     if(sessionStorage.getItem("name") == null){
       sessionStorage.setItem("name", name);
-      sessionStorage.setItem("lat", origem[0])
-      sessionStorage.setItem("lng", origem[1])
+      sessionStorage.setItem("lat", origem[0]);
+      sessionStorage.setItem("lng", origem[1]);
     }else{
-      armazenaName(sessionStorage.getItem("name"))
-      armazenaOrigem(sessionStorage.getItem("lat"), sessionStorage.getItem("lng"))
+      armazenaName(sessionStorage.getItem("name"));
+      armazenaOrigem(sessionStorage.getItem("lat"), sessionStorage.getItem("lng"));
     }
 
     const hasAvcBool = hasAvc == "sim" ? true : false;
