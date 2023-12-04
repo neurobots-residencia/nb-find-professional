@@ -11,7 +11,6 @@
     "@turf/distance": "^6.5.0",
     "@turf/turf": "^6.5.0",
     "axios": "^1.5.1",
-    "leaflet-easybutton": "^2.4.0",
     "leaflet-map": "^0.2.1",
     "leaflet-routing-machine": "^3.2.12",
     "lucide-react": "^0.289.0",

@@ -45,18 +45,18 @@ export default function CadastroLocalizacao() {
       <div className=" flex justify-center items-center h-screen font-poppins">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className=" w-fundoCard h-fundoCard p-12 bg-white flex flex-col gap-8 rounded-md "
+          className=" w-fundoCard h-fundoCard p-12 bg-white flex flex-col gap-8 rounded-md sm:w-smFundoCard sm:h-smFundoCard "
         >
           <label className="text-2xl font-bold mt-6">Localização </label>
           <div className="flex flex-col gap-6">
             <input
               id="cep"
               placeholder="CEP*"
-              className={`outline-azulEscuro placeholder-gray-500 border p-6  h-14 rounded border-gray-400 ${errors.cep ? "border-red-500" : ""
+              className={`outline-azulEscuro placeholder-gray-500 border p-6  h-14 rounded border-gray-400 ${errors.cep ? "placeholder:text-red-500" : ""
                 }`}
               type="text"
               {...register("cep", {
-                required: "Campo obrigatório",
+                required: "CEP obrigatório",
                 pattern: {
                   value: /^\d{8}$/,
                   message: "CEP inválido",
@@ -64,29 +64,29 @@ export default function CadastroLocalizacao() {
               })}
               onBlur={checkCEP}
             />
-            {errors.cep && <p className="text-red-500">{errors.cep.message}</p>}
-
             <input
               id="cidade"
               placeholder="Cidade"
-              className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400"
+              className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${errors.cidade ? "placeholder:text-red-500" : ""}`} 
               type="text"
-              {...register("cidade")}
+              {...register("cidade", {
+                required: "Cidade obrigatória"
+              })}
             />
 
             <input
               placeholder="Rua"
-              className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400"
+              className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${errors.rua ? "placeholder:text-red-500" : ""}`}
               type="text"
-              {...register("rua")}
+              {...register("rua", {
+                required: "Rua obrigatória"
+              })}
             />
-            {errors.rua && <p className="text-red-500">{errors.rua.message}</p>}
           </div>
 
           <div className=" flex gap-4">
             <select
-              className={`outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm ${errors.distanciaDesejada ? "border-red-500" : ""
-                }`}
+              className="outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm"
               {...register("distanciaDesejada", {
                 required: "Selecione a distância desejada",
               })}
@@ -105,9 +105,11 @@ export default function CadastroLocalizacao() {
             <input
               id="estado"
               placeholder="Estado"
-              className="outline-azulEscuro placeholder-gray-500 p-6 w-52 border h-14 rounded border-gray-400"
+              className={`outline-azulEscuro placeholder-gray-500 p-6 w-52 border h-14 rounded border-gray-400 ${errors.estado ? "placeholder:text-red-500" : ""}`}
               type="text"
-              {...register("estado")}
+              {...register("estado", {
+                required: "Estado obrigatório"
+              })}
             />
           </div>
           <div className="flex justify-center">

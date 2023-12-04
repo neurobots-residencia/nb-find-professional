@@ -17,7 +17,6 @@ export default function TelaMapa(props) {
     hasAvc,
     hasAnotherCondition,
     investmentAmount,
-    origem,
     armazenaName,
     armazenaOrigem
   } = useStore();
@@ -26,9 +25,6 @@ export default function TelaMapa(props) {
     fetch()
 
     if(sessionStorage.getItem("name") == null){
-      sessionStorage.setItem("name", name);
-      sessionStorage.setItem("lat", origem[0]);
-      sessionStorage.setItem("lng", origem[1]);
     }else{
       armazenaName(sessionStorage.getItem("name"));
       armazenaOrigem(sessionStorage.getItem("lat"), sessionStorage.getItem("lng"));
@@ -74,7 +70,7 @@ export default function TelaMapa(props) {
         <a className="m-3">
           <ArrowLeft size={40} />
         </a>
-        <p className="text-4xl justify-center text-black font-semibold">
+        <p className="text-4xl justify-center text-black font-semibold lg:text-3xl lg:indent-32 md:text-2xl md:indent-16 sm:text-xl sm:indent-10">
           Olá <span className="text-teal-300">{name}</span>, aqui está a
           lista de profissionais mais próxima de você
         </p>
@@ -101,6 +97,7 @@ export default function TelaMapa(props) {
           <Map />
           <button
             onClick={() => {
+              document.querySelector(".leaflet-routing-container").classList.remove("hidden")
               const descRota = document.querySelector(
                 ".leaflet-routing-alternatives-container"
               );

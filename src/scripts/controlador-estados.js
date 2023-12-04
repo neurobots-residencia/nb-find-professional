@@ -37,7 +37,9 @@ export const useStore = create((set) => ({
             .then(response => response.json())
             .then(data => {
                 const { lat, lng } = data.results[0].geometry;
-                set({ origem: [lat, lng] })
+                set({ origem: [lat, lng] });
+                sessionStorage.setItem("lat", lat);
+                sessionStorage.setItem("lng", lng);
             })
             .catch(error => {
                 console.error('Erro ao obter dados de geolocalização:', error);

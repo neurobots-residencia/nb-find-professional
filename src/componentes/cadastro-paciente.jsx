@@ -35,7 +35,7 @@ export default function CadastroPaciente() {
       <div className=" flex justify-center items-center h-screen font-poppins">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-cardPac h-cardPac p-12 bg-white flex flex-col gap-8 rounded-md "
+          className="w-cardPac h-cardPac p-12 bg-white flex flex-col gap-8 rounded-md sm:w-smFundoCard "
         >
           <label className="text-2xl font-bold">Informações do paciente</label>
           <div className=" flex gap-6">
@@ -43,87 +43,59 @@ export default function CadastroPaciente() {
               id='nome'
               placeholder="Nome*"
               {...register("nome", {
-                required: "Campo obrigatório",
+                required: "Nome obrigatório",
                 pattern: {
                   value: "",
                   message: "Nome inválido",
                 },
               })}
-              className="outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 "
+              className={`outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 ${errors.nome ? "placeholder:text-red-500" : ""}`}   
               type="text"
             />
-            {errors.nome && (
-              <p className="text-red-500">{errors.nome.message}</p>
-            )}
             <input
             id='whatsapp'
               placeholder="whatsapp*"
               {...register("whatsapp", {
-                required: "Campo obrigatório",
+                required: "Número obrigatório",
                 pattern: {
                   value: "",
                   message: "Número inválido",
                 },
               })}
-              className="outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm"
+              className={`outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm ${errors.whatsapp ? "placeholder:text-red-500" : ""}`}
               type="text"
             />
-            {errors.whatsapp && (
-              <p className="text-red-500">{errors.whatsapp.message}</p>
-            )}
           </div>
           <input
             id='email'
             placeholder="Email*"
-            className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400"
+            className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${errors.email ? "placeholder:text-red-500" : ""}`}
             type="email"
             {...register("email", {
-              required: "Campo obrigatório",
+              required: "Email obrigatório",
               pattern: {
                 value: "",
                 message: "Email inválido",
               },
             })}
           />
-          {errors.email && (
-            <p className="text-red-500">{errors.email.message}</p>
-          )}
           <label className="text-2xl font-bold">Informações do AVC</label>
           <div className=" flex gap-6">
-            {/* <select
-              className="outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm "
-              {...register("historicoAVCFamilia", { required: true })}
-            >
-              {errors.historicoAVCFamilia && (
-                <p className="text-red-500">
-                  {errors.historicoAVCFamilia.message}
-                </p>
-              )}
-              <option disabled selected></option>
-              <option>Sim</option>
-              <option>Não</option>
-            </select>
-            <select
-              className="outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm"
-              {...register("valorInvestir", { required: true })}
-            >
-              <option disabled selected className="placeholder-gray-500">
-                Qual valor de investimento?
-              </option>
-              <option>Não tenho valor para investir</option>
-              <option>R$ 500 a R$1000</option>
-              <option>R$ 1000 a R$1500</option>
-              <option>R$ 1600 a R$2500</option>
-              <option>Acima de R$2500</option>
-            </select> */}
-
             <Controller
               name="historicoAVCFamilia"
               defaultValue = ""
               control={control}
               rules={{ required: "Por favor, selecione uma opção" }}
               render={({ field }) => (
-                <select {...field} id='historicoAVCFamilia'>
+                <select 
+                  {...field} 
+                  id='historicoAVCFamilia'
+                  onClick={()=>{
+                    if(document.querySelector('#historicoAVCFamilia').classList.contains('text-red-500')){
+                      document.querySelector('#historicoAVCFamilia').classList.remove('text-red-500')
+                    }
+                  }}  
+                > 
                   <option value="" disabled hidden>
                     Você tem AVC na familia?
                   </option>
@@ -133,9 +105,7 @@ export default function CadastroPaciente() {
               )}
             />
             {errors.historicoAVCFamilia && (
-              <p className="text-red-500">
-                {errors.historicoAVCFamilia.message}
-              </p>
+              document.querySelector('#historicoAVCFamilia').classList.add('text-red-500')
             )}
             <Controller
               name="valorInvestir"
@@ -143,7 +113,15 @@ export default function CadastroPaciente() {
               control={control}
               rules={{ required: "Por favor, selecione um valor a investir" }}
               render={({ field }) => (
-                <select {...field} id='valorInvestir'>
+                <select 
+                  {...field} 
+                  id='valorInvestir'
+                  onClick={()=>{
+                    if(document.querySelector('#valorInvestir').classList.contains('text-red-500')){
+                      document.querySelector('#valorInvestir').classList.remove('text-red-500')
+                    }
+                  }}
+                >
                   <option value="" disabled hidden>
                     Não tenho valor para investir
                   </option>
@@ -155,13 +133,13 @@ export default function CadastroPaciente() {
               )}
             />
             {errors.valorInvestir && (
-              <p className="text-red-500">{errors.valorInvestir.message}</p>
+              document.querySelector('#valorInvestir').classList.add('text-red-500')
             )}
           </div>
           <input
             id="outraCondicao"
             placeholder="Possui outra condição que não seja AVC? Qual?"
-            className="outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400"
+            className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${errors.outraCondicaoSaude ? "placeholder:text-red-500" : ""}`}
             type="text"
             {...register("outraCondicaoSaude", {
               required: "Campo obrigatório",
@@ -171,9 +149,6 @@ export default function CadastroPaciente() {
               },
             })}
           />
-          {errors.outraCondicaoSaude && (
-            <p className="text-red-500">{errors.outraCondicaoSaude.message}</p>
-          )}
           <div className="flex justify-center">
             <button
               type="submit"
