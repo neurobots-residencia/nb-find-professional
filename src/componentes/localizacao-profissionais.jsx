@@ -2,10 +2,10 @@ import { ArrowLeft, SunIcon } from "lucide-react";
 import Map from "./mapa";
 import Card from "./card";
 import { useEffect } from "react";
-// import postData from "../scripts/post-dados";
+import postData from "../scripts/post-dados";
 import { useStore } from "../scripts/controlador-estados";
 
-export default function TelaMapa(props) {
+export default function TelaMapa() {
   const {
     data,
     fetch,
@@ -23,14 +23,9 @@ export default function TelaMapa(props) {
 
   useEffect(() => {
     fetch()
-
-    if(sessionStorage.getItem("name") == null){
-    }else{
-      armazenaName(sessionStorage.getItem("name"));
-      armazenaOrigem(sessionStorage.getItem("lat"), sessionStorage.getItem("lng"));
-    }
-
-    const hasAvcBool = hasAvc == "sim" ? true : false;
+    armazenaName(sessionStorage.getItem("name"));
+    armazenaOrigem(sessionStorage.getItem("lat"), sessionStorage.getItem("lng"));
+    const hasAvcBool = hasAvc === "sim" ? true : false;
     const postDataArray = [
       name,
       email,
@@ -41,7 +36,7 @@ export default function TelaMapa(props) {
       hasAnotherCondition,
       investmentAmount
     ]
-    console.log(postDataArray)
+    postData(postDataArray);
   }, [])
   
   return (
@@ -78,7 +73,7 @@ export default function TelaMapa(props) {
 
       <main className="flex-1 p-6 flex gap-6">
         <div className="flex flex-col flex-1 gap-4 items-center h-[60vh] overflow-hidden">
-          <div className="grid gap-2  overflow-y-scroll right-[-30px] relative">
+          <div className="grid gap-2  overflow-y-scroll right-[-30px] relative overflow-hidden">
             {data.map((data, index) => {
               return (
                 <Card
@@ -95,7 +90,7 @@ export default function TelaMapa(props) {
         </div>
         <div className="items-center relative w-3/6">
           <Map />
-          <button
+          {/* <button
             onClick={() => {
               document.querySelector(".leaflet-routing-container").classList.remove("hidden")
               const descRota = document.querySelector(
@@ -109,7 +104,7 @@ export default function TelaMapa(props) {
             }}
           >
             Esconde descrição da rota
-          </button>
+          </button> */}
         </div>
       </main>
     </div>

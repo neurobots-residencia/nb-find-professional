@@ -21,6 +21,7 @@ export default function CadastroPaciente() {
     formState: { errors },
   } = useForm();
   const onSubmit = () => {
+    sessionStorage.setItem("name", document.querySelector('#nome').value)
     armazenaName(document.querySelector('#nome').value);
     armazenaWhatsapp(document.querySelector('#whatsapp').value);
     armazenaEmail(document.querySelector('#email').value);

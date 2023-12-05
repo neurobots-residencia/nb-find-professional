@@ -3,7 +3,7 @@ import { useStore } from "../scripts/controlador-estados";
 import DistanciaInKM from "./distancia";
 
 const Card = (props) => {
-  const { data, destino, armazenaDestino, origem } = useStore();
+  const { data, armazenaDestino, origem } = useStore();
 
   return (
     <div
