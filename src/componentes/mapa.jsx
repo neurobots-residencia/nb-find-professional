@@ -4,8 +4,6 @@ import { useStore } from "../scripts/controlador-estados";
 import { icon } from "leaflet";
 import RoutingMachine from "./Rotas";
 import { useEffect, useRef, useState } from "react";
-import "leaflet-easybutton/src/easy-button.js";
-import "leaflet-easybutton/src/easy-button.css";
 
 export default function Map() {
   const { data, fetch, origem, destino } = useStore();

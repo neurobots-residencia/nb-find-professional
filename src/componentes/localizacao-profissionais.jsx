@@ -4,7 +4,7 @@ import Card from "./card";
 
 
 import { useStore } from "../scripts/controlador-estados";
-import { convertLength, getDistance } from "./distancia";
+import { convertLength, getDistance } from "../scripts/distancia";
 
 export default function TelaMapa(props) {
   const { data, origem } = useStore();
