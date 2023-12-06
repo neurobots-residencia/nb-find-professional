@@ -23,7 +23,9 @@ export default function CadastroLocalizacao() {
     armazenaCity(document.querySelector('#cidade').value);
     armazenaState(document.querySelector('#estado').value);
     fetchLatLong(document.querySelector('#cep').value);
-    trocarTela();
+    setTimeout(()=>{
+      trocarTela();
+    }, 1000)
   };
 
   const checkCEP = (e) => {

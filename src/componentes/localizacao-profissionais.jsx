@@ -4,11 +4,16 @@ import Card from "./card";
 import { useEffect } from "react";
 import postData from "../scripts/post-dados";
 import { useStore } from "../scripts/controlador-estados";
+import { useNavigate } from "react-router-dom";
+
 
 export default function TelaMapa() {
+
+  const navigate = useNavigate();
+
   const {
     data,
-    fetch,
+    
     name,
     email,
     whatsapp,
@@ -17,8 +22,11 @@ export default function TelaMapa() {
     hasAvc,
     hasAnotherCondition,
     investmentAmount,
+    
+    fetch,
     armazenaName,
-    armazenaOrigem
+    armazenaOrigem,
+
   } = useStore();
 
   useEffect(() => {
@@ -37,6 +45,7 @@ export default function TelaMapa() {
       investmentAmount
     ]
     postData(postDataArray);
+    console.log('opca')
   }, [])
   
   return (
@@ -54,20 +63,20 @@ export default function TelaMapa() {
             alt="Nome Neurobots"
           ></img>
         </div>
-        <div className="flex items-center gap-3">
-          <button className="text-white">
-            <SunIcon size={20} />
-          </button>
-        </div>
       </div>
 
       <div className="flex items-center indent-80">
-        <a className="m-3">
+        <a 
+        className="m-3 cursor-pointer"
+        onClick={() => {
+          navigate("/cadastroLocalizacao")
+          console.log('teste')
+        }}
+        >
           <ArrowLeft size={40} />
         </a>
         <p className="text-4xl justify-center text-black font-semibold lg:text-3xl lg:indent-32 md:text-2xl md:indent-16 sm:text-xl sm:indent-10">
-          Olá <span className="text-teal-300">{name}</span>, aqui está a
-          lista de profissionais mais próxima de você
+          Olá <span className="text-teal-300">{name}</span>, aqui está a lista de profissionais mais próxima de você
         </p>
       </div>
 
@@ -90,21 +99,6 @@ export default function TelaMapa() {
         </div>
         <div className="items-center relative w-3/6">
           <Map />
-          {/* <button
-            onClick={() => {
-              document.querySelector(".leaflet-routing-container").classList.remove("hidden")
-              const descRota = document.querySelector(
-                ".leaflet-routing-alternatives-container"
-              );
-              if (descRota.classList.contains("hidden")) {
-                descRota.classList.remove("hidden");
-              } else {
-                descRota.classList.add("hidden");
-              }
-            }}
-          >
-            Esconde descrição da rota
-          </button> */}
         </div>
       </main>
     </div>

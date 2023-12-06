@@ -24,7 +24,10 @@ export const useStore = create((set) => ({
 
     data: [],
 
-    origem: [-8.062078318384115, -34.872558990090724],
+    origem: [
+        -8.0620, 
+        -34.8725
+    ],
     destino: [],
 
     fetch: async () => {
