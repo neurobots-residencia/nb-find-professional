@@ -1,11 +1,11 @@
-import { ArrowLeft, SunIcon } from "lucide-react";
 import Map from "./mapa";
 import Card from "./card";
-import { useEffect } from "react";
 import postData from "../scripts/post-dados";
+import { ArrowLeft } from "lucide-react";
+import { useEffect } from "react";
 import { useStore } from "../scripts/controlador-estados";
 import { useNavigate } from "react-router-dom";
-
+import { convertLength, getDistance } from "../scripts/distancia";
 
 export default function TelaMapa() {
 
@@ -22,6 +22,8 @@ export default function TelaMapa() {
     hasAvc,
     hasAnotherCondition,
     investmentAmount,
+
+    origem,
     
     fetch,
     armazenaName,
@@ -45,8 +47,18 @@ export default function TelaMapa() {
       investmentAmount
     ]
     postData(postDataArray);
-    console.log('opca')
   }, [])
+
+  const sortedData = [...data.map(d => ({
+    ...d,
+    distance: getDistance({
+      position: {lat: origem[0], lng: origem[1]},
+      destination: {
+        lat: Number(d.lat),
+        lng: Number(d.long)
+      }
+    })
+  }))].sort((a,z) =>a.distance - z.distance)
   
   return (
     <div className="min-h-screen flex flex-col bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full">
@@ -70,7 +82,6 @@ export default function TelaMapa() {
         className="m-3 cursor-pointer"
         onClick={() => {
           navigate("/cadastroLocalizacao")
-          console.log('teste')
         }}
         >
           <ArrowLeft size={40} />
@@ -83,14 +94,17 @@ export default function TelaMapa() {
       <main className="flex-1 p-6 flex gap-6">
         <div className="flex flex-col flex-1 gap-4 items-center h-[60vh] overflow-hidden">
           <div className="grid gap-2  overflow-y-scroll right-[-30px] relative overflow-hidden">
-            {data.map((data, index) => {
+            {sortedData.map((data, index) => {
               return (
                 <Card
                   key={index}
                   id={index}
                   clinica={data.clinica}
                   contato={data.contato}
-                  email={data.email}
+                  email={data.email}  
+                  lat={Number(data.lat)}
+                  lng={Number(data.long)}
+                  distance={convertLength(data.distance)}
                   endereco_atendimento={data.endereco_atendimento}
                 />
               );

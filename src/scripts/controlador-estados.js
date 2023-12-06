@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { getDistance } from "../scripts/distancia";
 const apiKey = '1e469ea4b5d9425c9bbe2b158852c80d';
 
 
@@ -33,6 +34,16 @@ export const useStore = create((set) => ({
     fetch: async () => {
         const response = await fetch("https://api-clinics.rj.r.appspot.com/all")
         set({ data: await response.json() })
+        // set({ sortedData: [...useStore.getState().data.map(d => ({
+        //     ...d,
+        //     distance: getDistance({
+        //       position: {lat: useStore.getState().origem[0], lng: useStore.getState().origem[1]},
+        //       destination: {
+        //         lat: Number(d.lat),
+        //         lng: Number(d.long)
+        //       }
+        //     })
+        //   }))].sort((a,z) =>a.distance - z.distance)})
     },
 
     fetchLatLong: async (cep) => {

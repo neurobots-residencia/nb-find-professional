@@ -4,6 +4,7 @@ import { useStore } from "../scripts/controlador-estados";
 import { icon } from "leaflet";
 import RoutingMachine from "./Rotas";
 import { useRef } from "react";
+import { convertLength, getDistance } from "../scripts/distancia";
 
 function ChangeView({ center }) {
   const map = useMap();
@@ -13,6 +14,17 @@ export default function Map() {
   const { data, origem, destino } = useStore();
   const rMachine = useRef(null);
   const pointsToUse = [origem, destino];  
+
+  const sortedData = [...data.map(d => ({
+    ...d,
+    distance: getDistance({
+      position: {lat: origem[0], lng: origem[1]},
+      destination: {
+        lat: Number(d.lat),
+        lng: Number(d.long)
+      }
+    })
+  }))].sort((a,z) =>a.distance - z.distance)
 
   return (
     <MapContainer
@@ -34,7 +46,7 @@ export default function Map() {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {data.map((clinic, index) => {
+        {sortedData.map((clinic, index) => {
           return (
             <>
               <Marker

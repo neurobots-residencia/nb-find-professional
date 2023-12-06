@@ -28,8 +28,6 @@ const createRoutineMachineLayer = (props) => {
   if (instance != null) {
     instance.spliceWaypoints(0, 2);
   }
-
-  console.log(instance);
   return instance;
 };
 const RoutingMachine = createControlComponent(createRoutineMachineLayer);
