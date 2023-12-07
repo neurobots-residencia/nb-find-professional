@@ -14,8 +14,18 @@ A ausência de automatização no processo de conexão entre pacientes e tratame
 3- Imicie a aplicação com o comando 'npm start'
 
 ## Cadastro de informações do paciente
-1- Prencha todos os campos de entrada para que possa entrar no sistema
-2- 
+
+1- Aperte no botão 'procurar profissionais' para poder ter acesso ao formulário.
+2- Preencha todos os inputs e selecione todas as opções que se encaixe mais no seu caso.
+3- Obs: se algum input não for preenchido, você não poderá avançar para a próxima tela.
+4 - Campos como email só funcionam se for preenchido com o padrão: @.
+
 ## Cadastro de informações do local
 
+1-Preencha todos os inputs e selecione todas as opções que se encaixe mais no seu caso. Caso algum input não seja preenchido, você não conseguirá avançar no sistema.
+2- O input de cep só funciona se ele ter apenas números, sem espaços ou caracteres especiais.
+3- Se caso quando digitar o cep aparecer algum erro, é porque o sistema não enviou de forma rápida as informações de lat e long do cep. Nesse caso 
+volte para a tela de cadastro paciente e avance novamente que agora você conseguirá avançar.
+
 ## Tela das clínicas mais próximas
+1- Aperte no botão 'Ver trajeto' para você conseguir ter acesso ao trajeto do caminho.
