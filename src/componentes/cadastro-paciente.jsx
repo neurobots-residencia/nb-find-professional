@@ -35,10 +35,10 @@ export default function CadastroPaciente() {
       <div className=" flex justify-center items-center h-screen font-poppins">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="w-cardPac h-cardPac p-12 bg-white flex flex-col gap-8 rounded-md sm:w-smFundoCard "
+          className="w-cardPac h-cardPac p-12 bg-white flex flex-col gap-8 rounded-md sm:w-smFundoCard xm:w-xmFundoCard xm:h-xmHeightPaciente"
         >
           <label className="text-2xl font-bold">Informações do paciente</label>
-          <div className=" flex gap-6">
+          <div className=" flex gap-6 xm:flex-col">
             <input
               id="nome"
               placeholder="Nome*"
@@ -86,7 +86,7 @@ export default function CadastroPaciente() {
             })}
           />
           <label className="text-2xl font-bold">Informações do AVC</label>
-          <div className=" flex gap-6">
+          <div className=" flex gap-6 xm:flex-col">
             <Controller
               name="historicoAVCFamilia"
               defaultValue=""

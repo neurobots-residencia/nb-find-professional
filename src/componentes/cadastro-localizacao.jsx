@@ -47,7 +47,7 @@ export default function CadastroLocalizacao() {
       <div className=" flex justify-center items-center h-screen font-poppins">
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className=" w-fundoCard h-fundoCard p-12 bg-white flex flex-col gap-8 rounded-md sm:w-smFundoCard sm:h-smFundoCard "
+          className=" w-fundoCard h-fundoCard p-12 bg-white flex flex-col gap-8 rounded-md sm:w-smFundoCard sm:h-smFundoCard xm:w-xmFundoCard xm:h-xmHeightLocalizacao"
         >
           <label className="text-2xl font-bold mt-6">Localização </label>
           <div className="flex flex-col gap-6">
@@ -86,7 +86,7 @@ export default function CadastroLocalizacao() {
             />
           </div>
 
-          <div className=" flex gap-4">
+          <div className=" flex gap-4 xm:flex-col-reverse">
             <select
               className="outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm"
               {...register("distanciaDesejada", {

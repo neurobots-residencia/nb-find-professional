@@ -29,7 +29,7 @@ const Card = (props) => {
       className=" w-card p-1 border flex flex-row justify-evenly rounded-lg border-gray-600 placeholder-gray-500"
       id={props.id}
     >
-      <div className="flex flex-col min-w-min max-w-xs gap-1">
+      <div className="flex flex-col min-w-min max-w-xs gap-1 ">
         <div className="flex text-center gap-4 py-4">
           <img
             className="h-6"

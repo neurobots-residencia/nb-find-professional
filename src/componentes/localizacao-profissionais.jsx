@@ -94,15 +94,15 @@ export default function TelaMapa() {
         >
           <ArrowLeft size={40} />
         </a>
-        <p className="text-4xl justify-center text-black font-semibold lg:text-3xl lg:indent-32 md:text-2xl md:indent-16 sm:text-xl sm:indent-10">
+        <p className="text-4xl justify-center text-black font-semibold lg:text-3xl lg:indent-32 md:text-2xl md:indent-16 sm:text-xl sm:indent-10 xm:text-xl xm:indent-7">
           Olá <span className="text-teal-300">{name}</span>, aqui está a lista
           de profissionais mais próxima de você
         </p>
       </div>
 
-      <main className="flex-1 p-6 flex justify-evenly gap-6">
+      <main className="flex-1 p-6 flex justify-evenly gap-6 xm:flex-col sm:flex-col md:flex-col">
         <div className="flex flex-col gap-4 items-center h-[65.5vh] overflow-hidden">
-          <div className="grid gap-2  overflow-y-scroll right-[-30px]">
+          <div className="grid gap-2  overflow-y-scroll right-[-30px] ">
             {sortedData.map((data, index) => {
               return (
                 <Card
@@ -120,7 +120,7 @@ export default function TelaMapa() {
             })}
           </div>
         </div>
-        <div className="items-center relative w-3/6">
+        <div className="items-center relative w-3/6 xm:w-full xm:pb-5">
           <Map />
         </div>
       </main>

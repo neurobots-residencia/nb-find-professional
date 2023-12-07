@@ -21,6 +21,9 @@ export default {
         'xl': {'min': '1200px'},
       },
       spacing:{
+        xmHeightLocalizacao:'600px',
+        xmHeightPaciente:'720px',
+        xmFundoCard: '400px',
         smFundoCard: '550px',
         fundoCard: '580px',
         cardPac: '600px',
