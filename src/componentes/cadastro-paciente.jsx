@@ -49,7 +49,7 @@ export default function CadastroPaciente() {
                   message: "Nome inválido",
                 },
               })}
-              className={`outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 ${
+              className={`outline-azulEscuro placeholder-gray-500 p-4 xm:w-full border h-14 rounded border-gray-400 mr-0.5 ${
                 errors.nome ? "placeholder:text-red-500" : ""
               }`}
               type="text"
@@ -64,7 +64,7 @@ export default function CadastroPaciente() {
                   message: "Número inválido",
                 },
               })}
-              className={`outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm ${
+              className={`outline-azulEscuro placeholder-gray-500 p-4 xm:w-full border h-14 rounded border-gray-400 mr-0.5 text-sm ${
                 errors.whatsapp ? "placeholder:text-red-500" : ""
               }`}
               type="text"
@@ -161,7 +161,7 @@ export default function CadastroPaciente() {
           <input
             id="outraCondicao"
             placeholder="Possui outra condição que não seja AVC? Qual?"
-            className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${
+            className={`outline-azulEscuro placeholder-gray-500  p-4 border h-14 rounded border-gray-400 ${
               errors.outraCondicaoSaude ? "placeholder:text-red-500" : ""
             }`}
             type="text"

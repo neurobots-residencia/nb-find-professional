@@ -88,7 +88,7 @@ export default function CadastroLocalizacao() {
 
           <div className=" flex gap-4 xm:flex-col-reverse">
             <select
-              className="outline-azulEscuro p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm"
+              className="outline-azulEscuro p-4 w-64 border xm:w-full h-14 rounded border-gray-400 mr-0.5 text-sm"
               {...register("distanciaDesejada", {
                 required: "Selecione a distância desejada",
               })}
@@ -107,7 +107,7 @@ export default function CadastroLocalizacao() {
             <input
               id="estado"
               placeholder="Estado"
-              className={`outline-azulEscuro placeholder-gray-500 p-6 w-52 border h-14 rounded border-gray-400 ${errors.estado ? "placeholder:text-red-500" : ""}`}
+              className={`outline-azulEscuro placeholder-gray-500 p-6 w-52 border xm:w-full h-14 rounded border-gray-400 ${errors.estado ? "placeholder:text-red-500" : ""}`}
               type="text"
               {...register("estado", {
                 required: "Estado obrigatório"
