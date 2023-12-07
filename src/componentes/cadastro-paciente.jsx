@@ -3,14 +3,13 @@ import { useForm, Controller } from "react-hook-form";
 import { useStore } from "../scripts/controlador-estados";
 
 export default function CadastroPaciente() {
-  
-  const { 
-    armazenaName, 
-    armazenaWhatsapp, 
-    armazenaEmail, 
-    armazenaHasAvc, 
+  const {
+    armazenaName,
+    armazenaWhatsapp,
+    armazenaEmail,
+    armazenaHasAvc,
     armazenaHasAnotherCondition,
-    armazenaInvestmentAmount 
+    armazenaInvestmentAmount,
   } = useStore();
   const navigate = useNavigate();
   const trocarTela = () => navigate("/cadastroLocalizacao");
@@ -21,16 +20,16 @@ export default function CadastroPaciente() {
     formState: { errors },
   } = useForm();
   const onSubmit = () => {
-    sessionStorage.setItem("name", document.querySelector('#nome').value)
-    armazenaName(document.querySelector('#nome').value);
-    armazenaWhatsapp(document.querySelector('#whatsapp').value);
-    armazenaEmail(document.querySelector('#email').value);
-    armazenaHasAvc(document.querySelector('#historicoAVCFamilia').value);
-    armazenaHasAnotherCondition(document.querySelector('#outraCondicao').value)
-    armazenaInvestmentAmount(document.querySelector('#valorInvestir').value);
+    sessionStorage.setItem("name", document.querySelector("#nome").value);
+    armazenaName(document.querySelector("#nome").value);
+    armazenaWhatsapp(document.querySelector("#whatsapp").value);
+    armazenaEmail(document.querySelector("#email").value);
+    armazenaHasAvc(document.querySelector("#historicoAVCFamilia").value);
+    armazenaHasAnotherCondition(document.querySelector("#outraCondicao").value);
+    armazenaInvestmentAmount(document.querySelector("#valorInvestir").value);
     trocarTela();
   };
-  
+
   return (
     <div className=" bg-telaInicial min-h-screen bg-no-repeat bg-cover bg-center bg-fixed sm:max-w-full  md:max-w-5xl lg:max-w-6xl xl:max-w-full ">
       <div className=" flex justify-center items-center h-screen font-poppins">
@@ -41,7 +40,7 @@ export default function CadastroPaciente() {
           <label className="text-2xl font-bold">Informações do paciente</label>
           <div className=" flex gap-6">
             <input
-              id='nome'
+              id="nome"
               placeholder="Nome*"
               {...register("nome", {
                 required: "Nome obrigatório",
@@ -50,11 +49,13 @@ export default function CadastroPaciente() {
                   message: "Nome inválido",
                 },
               })}
-              className={`outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 ${errors.nome ? "placeholder:text-red-500" : ""}`}   
+              className={`outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 ${
+                errors.nome ? "placeholder:text-red-500" : ""
+              }`}
               type="text"
             />
             <input
-            id='whatsapp'
+              id="whatsapp"
               placeholder="whatsapp*"
               {...register("whatsapp", {
                 required: "Número obrigatório",
@@ -63,14 +64,18 @@ export default function CadastroPaciente() {
                   message: "Número inválido",
                 },
               })}
-              className={`outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm ${errors.whatsapp ? "placeholder:text-red-500" : ""}`}
+              className={`outline-azulEscuro placeholder-gray-500 p-4 w-64 border h-14 rounded border-gray-400 mr-0.5 text-sm ${
+                errors.whatsapp ? "placeholder:text-red-500" : ""
+              }`}
               type="text"
             />
           </div>
           <input
-            id='email'
+            id="email"
             placeholder="Email*"
-            className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${errors.email ? "placeholder:text-red-500" : ""}`}
+            className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${
+              errors.email ? "placeholder:text-red-500" : ""
+            }`}
             type="email"
             {...register("email", {
               required: "Email obrigatório",
@@ -84,19 +89,26 @@ export default function CadastroPaciente() {
           <div className=" flex gap-6">
             <Controller
               name="historicoAVCFamilia"
-              defaultValue = ""
+              defaultValue=""
               control={control}
               rules={{ required: "Por favor, selecione uma opção" }}
               render={({ field }) => (
-                <select 
-                  {...field} 
-                  id='historicoAVCFamilia'
-                  onClick={()=>{
-                    if(document.querySelector('#historicoAVCFamilia').classList.contains('text-red-500')){
-                      document.querySelector('#historicoAVCFamilia').classList.remove('text-red-500')
+                <select
+                  {...field}
+                  id="historicoAVCFamilia"
+                  className="outline-none border border-1"
+                  onClick={() => {
+                    if (
+                      document
+                        .querySelector("#historicoAVCFamilia")
+                        .classList.contains("text-red-500")
+                    ) {
+                      document
+                        .querySelector("#historicoAVCFamilia")
+                        .classList.remove("text-red-500");
                     }
-                  }}  
-                > 
+                  }}
+                >
                   <option value="" disabled hidden>
                     Você tem AVC na familia?
                   </option>
@@ -105,21 +117,29 @@ export default function CadastroPaciente() {
                 </select>
               )}
             />
-            {errors.historicoAVCFamilia && (
-              document.querySelector('#historicoAVCFamilia').classList.add('text-red-500')
-            )}
+            {errors.historicoAVCFamilia &&
+              document
+                .querySelector("#historicoAVCFamilia")
+                .classList.add("text-red-500")}
             <Controller
               name="valorInvestir"
-              defaultValue = ""
+              defaultValue=""
               control={control}
               rules={{ required: "Por favor, selecione um valor a investir" }}
               render={({ field }) => (
-                <select 
-                  {...field} 
-                  id='valorInvestir'
-                  onClick={()=>{
-                    if(document.querySelector('#valorInvestir').classList.contains('text-red-500')){
-                      document.querySelector('#valorInvestir').classList.remove('text-red-500')
+                <select
+                  {...field}
+                  id="valorInvestir"
+                  className="outline-none border border-1"
+                  onClick={() => {
+                    if (
+                      document
+                        .querySelector("#valorInvestir")
+                        .classList.contains("text-red-500")
+                    ) {
+                      document
+                        .querySelector("#valorInvestir")
+                        .classList.remove("text-red-500");
                     }
                   }}
                 >
@@ -133,14 +153,17 @@ export default function CadastroPaciente() {
                 </select>
               )}
             />
-            {errors.valorInvestir && (
-              document.querySelector('#valorInvestir').classList.add('text-red-500')
-            )}
+            {errors.valorInvestir &&
+              document
+                .querySelector("#valorInvestir")
+                .classList.add("text-red-500")}
           </div>
           <input
             id="outraCondicao"
             placeholder="Possui outra condição que não seja AVC? Qual?"
-            className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${errors.outraCondicaoSaude ? "placeholder:text-red-500" : ""}`}
+            className={`outline-azulEscuro placeholder-gray-500 p-6 border h-14 rounded border-gray-400 ${
+              errors.outraCondicaoSaude ? "placeholder:text-red-500" : ""
+            }`}
             type="text"
             {...register("outraCondicaoSaude", {
               required: "Campo obrigatório",

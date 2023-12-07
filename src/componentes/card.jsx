@@ -2,20 +2,27 @@ import React from "react";
 import { useStore } from "../scripts/controlador-estados";
 import { convertLength, getDistance } from "../scripts/distancia";
 
-
 const Card = (props) => {
   const { data, armazenaDestino, origem } = useStore();
 
-  const sortedData = [...data.map(d => ({
-    ...d,
-    distance: getDistance({
-      position: {lat: origem[0], lng: origem[1]},
-      destination: {
-        lat: Number(d.lat),
-        lng: Number(d.long)
-      }
-    })
-  }))].sort((a,z) =>a.distance - z.distance)
+  const clickElement = (e) => {
+    setTimeout(() => {
+      e.click();
+    }, 100);
+  };
+
+  const sortedData = [
+    ...data.map((d) => ({
+      ...d,
+      distance: getDistance({
+        position: { lat: origem[0], lng: origem[1] },
+        destination: {
+          lat: Number(d.lat),
+          lng: Number(d.long),
+        },
+      }),
+    })),
+  ].sort((a, z) => a.distance - z.distance);
 
   return (
     <div
@@ -41,9 +48,13 @@ const Card = (props) => {
         <button
           className="m-4 w-32 h-8 ml-20 bg-corAzul hover:bg-azulEscuro ease-linear duration-300 font-bold text-white rounded"
           onClick={(event) => {
-            document.querySelector(`img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`).click();
+            const element = document.querySelector(
+              `img[alt="marcador${event.currentTarget.parentElement.parentElement.id}"]`
+            );
+            clickElement(element);
             armazenaDestino(
-              sortedData[event.currentTarget.parentElement.parentElement.id].long,
+              sortedData[event.currentTarget.parentElement.parentElement.id]
+                .long,
               sortedData[props.id].lat
             );
           }}
