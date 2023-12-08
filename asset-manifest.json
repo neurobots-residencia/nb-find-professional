@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/nb-find-professional/static/css/main.9f6e76b5.css",
+    "main.js": "/nb-find-professional/static/js/main.e0cb4355.js",
+    "static/media/fundoTelaInicial.jpg": "/nb-find-professional/static/media/fundoTelaInicial.7dd453ff7cbf4c0e8d94.jpg",
+    "index.html": "/nb-find-professional/index.html",
+    "main.9f6e76b5.css.map": "/nb-find-professional/static/css/main.9f6e76b5.css.map",
+    "main.e0cb4355.js.map": "/nb-find-professional/static/js/main.e0cb4355.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9f6e76b5.css",
+    "static/js/main.e0cb4355.js"
+  ]
+}
