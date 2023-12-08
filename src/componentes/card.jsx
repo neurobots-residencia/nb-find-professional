@@ -1,6 +1,6 @@
 import React from "react";
 import { useStore } from "../scripts/controlador-estados";
-import { convertLength, getDistance } from "../scripts/distancia";
+import { getDistance } from "../scripts/distancia";
 
 const Card = (props) => {
   const { data, armazenaDestino, origem } = useStore();
